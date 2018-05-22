@@ -1,0 +1,337 @@
+.clear{
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix:after, .clearfix:before{
+    clear: both;
+    content: '\0020';
+    display: block;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+/*cd 1 */
+.boxContent {
+    padding: 177px 0;
+    background-attachment:fixed;
+    background-image: url(./bg-1.jpg);
+    background-color: #222;
+    color:#fff;
+    /*min-width: 960px;*/
+}
+.cdTestimonialsWrapper {
+  position: relative;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  z-index: 1;
+}
+/*
+@media only screen and (min-width: 768px) {
+  .cdTestimonialsWrapper {
+    margin: 2em auto;
+    padding: 50px;
+  }
+}
+@media only screen and (min-width: 1170px) {
+  .cdTestimonialsWrapper::after {
+    display: block;
+  }
+}
+*/
+.cdTestimonials {
+  color: #ffffff;
+  text-align: center;
+}
+.cdTestimonials::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.cdTestimonials > li {
+  position: absolute;
+  opacity: 0;
+}
+.cdTestimonials > li:first-child {
+  position: relative;
+  opacity: 1;
+}
+.cdTestimonials p {
+  font-family: "Georgia", serif;
+  font-style: italic;
+  line-height: 1.4;
+  margin-bottom: 1em;
+  padding: 0 120px;
+}
+@media only screen and (min-width: 768px) {
+  .cdTestimonials p {
+    font-size: 22px;
+    font-size: 1.375rem;
+  }
+}
+@media only screen and (min-width: 1170px) {
+  .cdTestimonials p {
+    font-size: 26px;
+    font-size: 1.625rem;
+    line-height: 1.6;
+  }
+}
+.cdAuthorInfo {
+  display: inline-block;
+  vertical-align: middle;
+}
+.cdAuthorInfo {
+  text-align: left;
+  line-height: 1.2;
+}
+.cdAuthorInfo li:first-child {
+  font-size: 14px;
+  font-size: 0.875rem;
+}
+.cdAuthorInfo li:last-child {
+  font-size: 12px;
+  font-size: 0.75rem;
+  color: #6b6b70;
+}
+.cdSeeAll {
+  margin: 30px 0;
+  height: 50px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.btnF {
+    /*border: none;*/
+    border: 1px solid #fff;
+    color: #fff;
+    display: inline-block;
+    padding: 0px 50px;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 15px;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 46px;
+    /*background: #1cd1aa;*/
+    background: transparent;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+    min-width: 170px;
+    margin-bottom: 20px;
+}
+.btnF:hover {
+    background: #fff;
+    color: #1cd1aa;
+   /*background: #1cd1aa;
+    color: #fff;*/
+}
+
+
+/*cd 2 */
+.boxContent2 {
+    padding: 50px 0;
+    /*background-attachment:fixed;
+    background-image: url(./bg-1.jpg);*/
+    background-color: #222;
+    color:#fff;
+    /*min-width: 960px;*/
+}
+.italicType {
+    font-family: 'Shadows Into Light', cursive;
+    font-size:22px;
+    font-style: italic;
+}
+.heading{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.heading h2{
+    font-size: 45px;
+    letter-spacing:2px;
+}
+.heading .intro{
+    margin-bottom: 25px;
+    font-family: 'Shadows Into Light', cursive;font-size:22px;
+    font-style: italic;
+}
+.imgcircle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.timeline {
+    position: relative;
+    padding: 0;
+    list-style: none;
+}
+.timeline:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    left: 40px;
+    width: 2px;
+    /*margin-left: -1.5px;*/
+    background-color: #6ECADC;
+}
+.timeline>li {
+    position: relative;
+    margin-bottom: 20px;
+    min-height: 50px;
+}
+.timeline>li:before,
+.timeline>li:after {
+    content: " ";
+    display: table;
+}
+.timeline>li:after {
+    clear: both;
+}
+.timeline>li .timelinePanel {
+    float: right;
+    position: relative;
+    width: 100%;
+    padding: 10px 20px 0 100px;
+    text-align: left;
+}
+.timeline>li .timelinePanel:before {
+    right: auto;
+    left: -15px;
+    border-right-width: 15px;
+    border-left-width: 0;
+}
+.timeline>li .timelinePanel:after {
+    right: auto;
+    left: -14px;
+    border-right-width: 14px;
+    border-left-width: 0;
+}
+/* .timeline>li .timelineImage {z-index: 100;position: absolute;left: 0;width: 80px;height: 80px;margin-left: 0;border: 6px solid #6ECADC;border-radius: 100%;text-align: center;color: #fff;background-color: #6ECADC;} */
+.timeline>li .timelineImage {
+    z-index: 100;
+    position: absolute;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    margin-left: 0;
+    border: 0px solid #6ECADC;
+    /*border-radius: 50%;*/
+    text-align: center;
+    color: #fff;
+    /*background-color: #6ECADC;*/
+}
+.timeline>li .timelineImage h4 {
+    margin-top: 12px;
+    font-size: 10px;
+    line-height: 14px;
+}
+/* .timeline>li.timelineInverted>.timelinePanel {float: right;padding: 0 20px 0 100px;text-align: left;} */
+.timeline>li.timelineInverted>.timelinePanel {
+    float: right;
+    padding: 10px 100px 0 20px;
+    text-align: left;
+}
+
+.timeline>li.timelineInverted>.timelinePanel:before {
+    right: auto;
+    left: -15px;
+    border-right-width: 15px;
+    border-left-width: 0;
+}
+
+.timeline>li.timelineInverted>.timelinePanel:after {
+    right: auto;
+    left: -14px;
+    border-right-width: 14px;
+    border-left-width: 0;
+}
+.timeline>li:last-child {
+    margin-bottom: 0;
+}
+.timeline .timelineHeading h4 {
+    margin-top: 0;
+    color: inherit;
+}
+.timeline .timelineHeading h4.subheading {
+    text-transform: none;
+}
+.timeline .timelineBody>p,
+.timeline .timelineBody>ul {
+    margin-bottom: 0;
+}
+
+@media(min-width:768px) {
+    .timeline:before {
+        left: 50%;
+    }
+    .timeline>li {
+        margin-bottom: 100px;
+        min-height: 100px;
+    }
+    .timeline>li .timelinePanel {
+        float: left;
+        width: 41%;
+        padding: 10px 20px 20px 30px;
+        text-align: right;
+    }
+    .timeline>li .timelineImage {
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        margin-left: -50px;
+    }
+    .timeline>li .timelineImage h4 {
+        margin-top: 16px;
+        font-size: 13px;
+        line-height: 18px;
+    }
+    .timeline>li.timelineInverted>.timelinePanel {
+        float: right;
+        padding: 10 30px 20px 20px;
+        text-align: left;
+    }
+}
+@media(min-width:992px) {
+    .timeline>li {
+        min-height: 150px;
+    }
+    .timeline>li .timelinePanel {
+        padding: 10px 20px 20px;
+    }
+    .timeline>li .timelineImage {
+        width: 150px;
+        height: 150px;
+        margin-left: -75px;
+    }
+    .timeline>li .timelineImage h4 {
+        margin-top: 30px;
+        font-size: 18px;
+        line-height: 26px;
+    }
+    .timeline>li.timelineInverted>.timelinePanel {
+        padding: 10px 20px 20px;
+    }
+}
+@media(min-width:1200px) {
+    .timeline>li {
+        min-height: 170px;
+    }
+    .timeline>li .timelinePanel {
+        padding: 10px 20px 20px 100px;
+    }
+    .timeline>li .timelineImage {
+        width: 170px;
+        height: 170px;
+        margin-left: -85px;
+    }
+    .timeline>li .timelineImage h4 {
+        margin-top: 40px;
+    }
+    .timeline>li.timelineInverted>.timelinePanel {
+        padding: 10 100px 20px 20px;
+    }
+}
