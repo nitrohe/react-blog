@@ -19,6 +19,8 @@ import TimeLine from "../timeLine/TimeLine";
 import FriendLink from "../friendLink/FriendLink";
 import {Progress} from 'antd';
 
+import HomeAntd from "../homeAntd/index.jsx";
+
 import NotFound from "../../components/notFound/NotFound";
 import {bindActionCreators} from 'redux'
 import {actions} from '../../reducers/adminManagerTags'
@@ -95,7 +97,8 @@ class Front extends Component{
                 <div className={style.container} style={{paddingTop:60,paddingBottom:20}}>
 
                     <Switch>
-                        <Route exact path={url} component={HomePage}/>
+                        {/*<Route exact path={url} component={HomePage}/>*/}
+                        <Route exact path={url} component={HomeAntd}/>
                         <Route path={`/Blog`} component={Home}/>
                         <Route path={`/Timeline`} component={TimeLine}/>
                         <Route path={`/FriendLink`} component={FriendLink}/>
@@ -125,6 +128,7 @@ class Front extends Component{
         //_this = this;
         window.addEventListener('scroll', this.handleScroll.bind(this));
     }
+    /*
     componentWillReceiveProps(nextProps) {
         let {isFetching} = this.props;
         let timer = '';
@@ -155,6 +159,7 @@ class Front extends Component{
             }
         //}
     }
+    */
 }
 
 Front.defaultProps = {

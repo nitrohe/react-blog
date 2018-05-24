@@ -24,11 +24,11 @@
     display: inline;
 }
 .loginMenu {
-    background:#2F3440;
+    background:#fff;
     /*background: rgba(0, 0, 0, 0) url("http://image.kuwo.cn/website/pc/moreBg.png") repeat scroll 0 0;*/
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
-    display: none;
+    display: block;
     left: 0px;
     /*padding: 0 19px;*/
     position: absolute;
@@ -45,7 +45,7 @@
 }
 .loginMenu a:hover {
     color: #f0aa00;
-    background-color: #242630;
+    background-color: #F5F5F5;
 }
 
 .loginInfo{
@@ -63,7 +63,7 @@
 
 }
 .loginInfo:hover {
-    background-color: #484C57;
+    background-color: #F5F5F5;
 }
 .loginInfo a:hover {
     color: #f0aa00;
@@ -76,7 +76,7 @@
     margin-top:0px;
 }
 .loginInfo > div > a{
-    color:#fff;
+    /*color:#fff;*/
 }
 .loginInfo > div > a:hover{
     /*color:#00aa88;*/

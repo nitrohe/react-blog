@@ -43,7 +43,7 @@ export default class MenuBar extends Component{
             <div className={style.menuBar}>
 
                 <div className={style.menuLogo}>
-                    <img className={style.menuLogoImg} style={{width:153,height:26}} title="Nitrohe的博客" src={require('./logo_white_2.png')} />
+                    <img className={style.menuLogoImg} style={{width:106,height:30}} title="Nitrohe的博客" src={require('./logo_black_2.png')} />
                 </div>
                 <div className={style.menuNav}>
                     { liList }
@@ -56,7 +56,8 @@ export default class MenuBar extends Component{
 
     componentDidMount() {
         this.setState({
-            current:this.props.history.location.pathname.replace('\/','')||'首页'
+            //current:this.props.history.location.pathname.replace('\/','')||'首页'
+            current:this.props.history.location.pathname.replace('\/','')||'Home'
         })
     }
 

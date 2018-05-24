@@ -1,4 +1,4 @@
-.menuBar{
+/*.menuBar{
     -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
 	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
@@ -9,6 +9,26 @@
     left: 0;
     background:#2F3440;
     position: fixed;
+}*/
+.menuBar{
+    /*-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+    height: auto;
+    width: 100%;
+    z-index: 999;*/
+    top: 0;
+    left: 0;
+    /*background:#2F3440;*/
+    position: fixed;
+
+    z-index: 8;
+    background: rgba(255,255,255,.8);
+    width: 100%;
+    padding: 0;
+    /*border-bottom: solid 3px #0a8;*/
+    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, .175);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .175);
 }
 .menuBar:after{
     clear: both;
@@ -48,14 +68,18 @@
     position: relative;
 	cursor: pointer;
 	float: left;
-	color: #eee;
+	/*color: #eee;*/
 	font-size: 16px;
 	line-height: 60px;
 	padding: 0 15px;
     list-style-type:none;
 }
 .menuItem:hover{
-    background-color: #484C57;
+    /*background-color: #484C57;*/
+    background-color: #F5F5F5;
+    height: 60px;
+    border-bottom: 2px solid #edefee;
+    display: block;
 }
 .menuItemSel{
     position: relative;
@@ -64,10 +88,13 @@
     font-size: 16px;
     line-height: 60px;
     padding: 0 15px;
-    list-style-type:none;
-
-    color: #fff;
-	background-color: #242630;
+    /*list-style-type:none;*/
+    /*color: #fff;
+	background-color: #242630;*/
+    height: 60px;
+    color: #666633;
+    border-bottom: 2px solid #886600;
+    display: block;
 }
 
 .menuLogin{

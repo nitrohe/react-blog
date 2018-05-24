@@ -51,11 +51,11 @@ export default class LoginBox extends Component{
             <div className={style.loginBox}>
 
                 <div className={style.loginInfo} onMouseMove={this.handleMousemove.bind(this)}  onMouseOut={this.handleMouseout.bind(this)}>
-                    <img  src={require('./visitor.png')} />
-                    <a id="reg_win" href="###">注册</a>
+                    <img src={require('./visitor.png')} />
+                    <a href="###">注册</a>
 
                     <div className={style.loginMenu} style={{display:visible}}>
-                        <a id="login_win" href="###" onClick={this.handleShowModal.bind(this)}>账号登录</a>
+                        <a  href="###" onClick={this.handleShowModal.bind(this)}>账号登录</a>
                         <a href="###">QQ登录</a>
                     </div>
                 </div>
