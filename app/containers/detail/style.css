@@ -35,9 +35,9 @@
     height: auto;
 }
 .contentContainer{
-    width: 70%;
-    /*display: flex;
-    flex-direction: row;*/
+    width: 80%;
+    display: flex;
+    flex-direction: row;
     padding-top: 20px;
     /*min-width: 945px;*/
     min-width: 945px;
@@ -45,7 +45,7 @@
 }
 .contentMain{
     /*width: 570px;*/
-    width: 66.6667%;
+    width: 75%;
     min-width: 630px;
     /*display: flex;
     flex-direction: column;
@@ -55,7 +55,8 @@
 .contentright{
     flex:1;
     margin-left: 20px;
-    width: 33.3333%;
+    width: 25%;
     min-width: 295px;
+    padding-top: 60px;
 
 }

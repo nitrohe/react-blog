@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import {actions} from "../../reducers/frontReducer";
 const {get_article_detail} = actions;
 import reactRenderer from 'remark-react'
+import { Anchor } from 'antd';
 import style from './style.css'
 class Detail extends Component{
     constructor(props){
@@ -15,30 +16,47 @@ class Detail extends Component{
 
     render(){
         const {articleContent,title,author,viewCount,commentCount,time} = this.props;
+        const articleParse = remark().use(reactRenderer).processSync(articleContent).contents;
+        const { Link } = Anchor;
+        const articleAnchor = articleParse[1].map((item,index)=>(
+            <Link key={index} href={`#${item.h2}`} title={item.h2} />
+        ));
+
         return(
             <div className={`${style.container} ${style.contentContainer}`}>
-                <h2>{title}</h2>
-                <div className={style.articleInfo}>
-                    <span >
-                        <img className={style.authorImg} src={require('./author.png')}/> {author}
-                    </span>
-                    <span>
-                        <img src={require('./calendar.png')}/> {time}
-                    </span>
-                    <span>
-                        <img src={require('./comments.png')}/> {commentCount}
-                    </span>
-                    <span>
-                        <img src={require('./views.png')}/> {viewCount}
-                    </span>
+                <div className={style.contentMain}>
+                    <h2>{title}</h2>
+                    <div className={style.articleInfo}>
+                        <span >
+                            <img className={style.authorImg} src={require('./author.png')}/> {author}
+                        </span>
+                        <span>
+                            <img src={require('./calendar.png')}/> {time}
+                        </span>
+                        <span>
+                            <img src={require('./comments.png')}/> {commentCount}
+                        </span>
+                        <span>
+                            <img src={require('./views.png')}/> {viewCount}
+                        </span>
+                    </div>
+                    <div id='preview' className={style.content}>
+                        {articleParse[0]}
+                    </div>
                 </div>
-                <div id='preview' className={style.content}>
-                    {remark().use(reactRenderer).processSync(articleContent).contents}
+                <div className={style.contentright}>
+                    <Anchor offsetTop="30">
+                        {articleAnchor}
+                    </Anchor>
                 </div>
             </div>
         )
     }
-
+    componentWillReceiveProps(nextProps) {
+        //console.log("detail=",nextProps);
+        //if(nextProps.articleContent)
+        //    console.log('processSync=',remark().use(reactRenderer).processSync(nextProps.articleContent).contents);
+    }
     componentDidMount() {
         this.props.get_article_detail(this.props.location.state.id);
     }
