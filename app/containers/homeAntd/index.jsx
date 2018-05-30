@@ -86,7 +86,7 @@ export default class HomeAntd extends Component {
     let locale = 'zh-CN'
     const childProps = { ...this.props, isMobile, locale};
     return (
-      <DocumentTitle title={`Nitrohe's Blog | Home`}>
+      <DocumentTitle title={`Nitrohe's Blog | Ê×Ò³`}>
         <div className={style.homeAntdBox}>
         {/*<div style={{minWidth:1200,backgroundColor:'#fff'}}>*/}
             <div className="main-wrapper">

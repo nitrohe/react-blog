@@ -3,6 +3,7 @@ import React,{Component} from 'react'
 //import bindAll from 'lodash.bindall';
 import style from './style.css'
 import {Icon} from 'antd';
+import DocumentTitle from 'react-document-title';
 
 export default class TimeLine extends Component{
     constructor(props){
@@ -30,74 +31,77 @@ export default class TimeLine extends Component{
     */
     render(){
         let _this = this;
-
+        let webTitle = "Nitrohe's Blog";
+        
         return(
-            <div className={style.timeline}>
+            <DocumentTitle title={`${webTitle} | 时间轴`}>
+                <div className={style.timeline}>
 
-                <div className={style.qwe}>
-                    <div className={style.timelineRow} style={{marginBottom:10, marginTop:10, paddingBottom:50}}>
-                        <div className={style.timelineTime} style={{marginLeft:-80, opacity:1}}>
-                            <small style={{fontSize:24}}>2017</small>
-                        </div>
-                        <div className={style.timelineIcon}>
-                            <div >
-                                <Icon type="pushpin-o"  style={{color:'#aaa'}} />
+                    <div className={style.qwe}>
+                        <div className={style.timelineRow} style={{marginBottom:10, marginTop:10, paddingBottom:50}}>
+                            <div className={style.timelineTime} style={{marginLeft:-80, opacity:1}}>
+                                <small style={{fontSize:24}}>2017</small>
                             </div>
-                        </div>
+                            <div className={style.timelineIcon}>
+                                <div >
+                                    <Icon type="pushpin-o"  style={{color:'#aaa'}} />
+                                </div>
+                            </div>
 
+                        </div>
+                        <div className={style.timelineRow}>
+                            <div className={style.timelineTime}>
+                                <small>2017-04-01</small>
+                            </div>
+                            <div className={style.timelineIcon}>
+                                <div >
+                                    <Icon type="edit" style={{color:'#aaa'}}/>
+                                </div>
+                            </div>
+                            <div className={`${style.panel} ${style.timelineContent}`}>
+                                <div className={style.panelBody}>
+                                    <h2>Blog创建过程</h2>
+                                    <p>刚开始也没想过写个博客什么的，某天查资料的时候，看到别人搭建的博客，想着闲着没事自己也整一个，然后就是开始码代码……</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={style.timelineRow}>
+                            <div className={style.timelineTime}>
+                                <small>2017-05-13</small>
+                            </div>
+                            <div className={style.timelineIcon}>
+                                <div >
+                                    <Icon type="edit" style={{color:'#aaa'}}/>
+                                </div>
+                            </div>
+                            <div className={`${style.panel} ${style.timelineContent}`}>
+                                <div className={style.panelBody}>
+                                    <blockquote>
+                                        <p>大概一个月了，抽空的时候翻翻别人的博客（水墨寒的博客、青春博客、轮回博客、SeeYou……很不错），网上搜罗搜罗模板，发现其实并不需要很多功能！自己的博客没啥特色，移植个EasyUI的官方主题试试</p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={style.timelineRow}>
+                            <div className={style.timelineTime}>
+                                <small>2017-05-17</small>
+                            </div>
+                            <div className={style.timelineIcon}>
+                                <div >
+                                    <Icon type="edit" style={{color:'#aaa'}}/>
+                                </div>
+                            </div>
+                            <div className={`${style.panel} ${style.timelineContent}`}>
+                                <div className={style.panelBody}>
+                                    <img  />
+                                    <p>功能记录：博客功能、移植EasyUI、时间轴（套模板）、互动（留言功能）、（注册/登录待定）</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className={style.timelineRow}>
-                        <div className={style.timelineTime}>
-                            <small>2017-04-01</small>
-                        </div>
-                        <div className={style.timelineIcon}>
-                            <div >
-                                <Icon type="edit" style={{color:'#aaa'}}/>
-                            </div>
-                        </div>
-                        <div className={`${style.panel} ${style.timelineContent}`}>
-                            <div className={style.panelBody}>
-                                <h2>Blog创建过程</h2>
-                                <p>刚开始也没想过写个博客什么的，某天查资料的时候，看到别人搭建的博客，想着闲着没事自己也整一个，然后就是开始码代码……</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={style.timelineRow}>
-                        <div className={style.timelineTime}>
-                            <small>2017-05-13</small>
-                        </div>
-                        <div className={style.timelineIcon}>
-                            <div >
-                                <Icon type="edit" style={{color:'#aaa'}}/>
-                            </div>
-                        </div>
-                        <div className={`${style.panel} ${style.timelineContent}`}>
-                            <div className={style.panelBody}>
-                                <blockquote>
-                                    <p>大概一个月了，抽空的时候翻翻别人的博客（水墨寒的博客、青春博客、轮回博客、SeeYou……很不错），网上搜罗搜罗模板，发现其实并不需要很多功能！自己的博客没啥特色，移植个EasyUI的官方主题试试</p>
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={style.timelineRow}>
-                        <div className={style.timelineTime}>
-                            <small>2017-05-17</small>
-                        </div>
-                        <div className={style.timelineIcon}>
-                            <div >
-                                <Icon type="edit" style={{color:'#aaa'}}/>
-                            </div>
-                        </div>
-                        <div className={`${style.panel} ${style.timelineContent}`}>
-                            <div className={style.panelBody}>
-                                <img  />
-                                <p>功能记录：博客功能、移植EasyUI、时间轴（套模板）、互动（留言功能）、（注册/登录待定）</p>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
-
-            </div>
+            </DocumentTitle>
 
         )
     }

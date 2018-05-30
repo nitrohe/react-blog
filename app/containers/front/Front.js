@@ -15,6 +15,8 @@ import FootBar from "../components/footBar/FootBar";
 import HomePage from "../homePage/HomePage";
 import BackTop from "../components/backTop/BackTop";
 
+import Column from "../column/Column";
+import Interact from "../interact/Interact";
 import TimeLine from "../timeLine/TimeLine";
 import FriendLink from "../friendLink/FriendLink";
 import {Progress} from 'antd';
@@ -102,14 +104,8 @@ class Front extends Component{
                         <Route path={`/Blog`} component={Home}/>
                         <Route path={`/Timeline`} component={TimeLine}/>
                         <Route path={`/FriendLink`} component={FriendLink}/>
-                        {
-                            /*
-                            <Route path={`/Column`} component={Column}/>
-                            <Route path={`/Words`} component={Words}/>
-                            <Route path={`/Interact`} component={Interact}/>
-                            */
-                        }
-
+                        <Route path={`/Column`} component={Column}/>
+                        <Route path={`/Interact`} component={Interact}/>
                         <Route path={`/detail/:id`} component={Detail}/>
                         <Route path={`/:tag`} component={Home}/>
                         <Route component={NotFound}/>

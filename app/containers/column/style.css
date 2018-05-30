@@ -1,0 +1,221 @@
+.column-list {
+
+    /*border-bottom: 1px solid #00aa88;*/
+    /*float: left;*/
+   /* height: 215px;*/
+    height: 200px;
+    /*margin-left: 30px*/;
+/*    margin-top: 40px;
+    padding-top: 50px;*/
+    position: relative;
+    /*width: 255px;*/
+    /*width: 234px;*/
+   /* margin-bottom:30px;*/
+
+}
+
+.columnLayoutMain {
+    margin: 1px auto 0;
+    padding: 0;
+    width: 660px;
+    z-index: 1;
+}
+
+.newsdataNav {
+    /*background: #fff none repeat scroll 0 0;*/
+    /*border-top: 1px solid #f04343;*/
+
+    height: 50px;
+    position: relative;
+    /*width: 600px;*/
+}
+.newsdataNav ul {
+    /*background: #f7f9fa none repeat scroll 0 0;*/
+    background: #F5F5F5 none repeat scroll 0 0;
+    height: 50px;
+    width: 660px;
+}
+.newsdataNav ul li {
+    float: left;
+}
+.newsdataNav ul li a {
+    color: #404040;
+    display: block;
+    font: 16px/50px "Microsoft Yahei";
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out 0s;
+    /*width: 65px;*/
+    padding: 0 10px;
+}
+.newsdataNav ul li a:hover {
+    /*background: #f04343 none repeat scroll 0 0;*/
+    background: #BB3D00 none repeat scroll 0 0;
+    color: #fff;
+    /*font-weight: bold;*/
+}
+.newsdataNav ul li a.current {
+    /*background: #f04343 none repeat scroll 0 0;*/
+    background: #BB3D00 none repeat scroll 0 0;
+    color: #fff;
+    /*font-weight: bold;*/
+}
+.newsdataNav ul li strong {
+    font-weight: normal;
+}
+.newsdataNav ul li .navItemInk {
+    background-color: #fff;
+    border-radius: 50%;
+    display: block;
+    height: 86px;
+    left: 50%;
+    margin-left: -43px;
+    margin-top: -43px;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    width: 86px;
+}
+.newsdataNav ul li .no_cursor {
+    cursor: default;
+}
+.newsdataNav .more {
+    /*background: rgba(0, 0, 0, 0) url("../images/sprite_img20170613.png") no-repeat scroll -279px -948px;*/
+    cursor: default;
+    /*float: left;*/
+    font: 16px/50px "Microsoft Yahei";
+    height: 50px;
+    overflow: hidden;
+    padding-left: 16px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 67px;
+}
+.newsdataNav .more_current {
+    background-color: #f34540;
+    background-position: -279px -314px;
+    color: #fff;
+    cursor: pointer;
+}
+.newsdataNav .more_hover {
+    background-color: #f34540;
+    background-position: -279px -582px;
+    color: #fff;
+}
+.newsdataNav .more_list {
+    background: rgba(247, 247, 247, 0.95) none repeat scroll 0 0;
+    display: none;
+    left: 0;
+    margin-top: 1px;
+    padding: 13px 0;
+    position: absolute;
+    top: 50px;
+    width: 600px;
+    z-index: 2;
+}
+.newsdataNav .more_list a {
+    color: #404040;
+    display: inline;
+    float: left;
+    font-size: 16px;
+    margin: 0 17px;
+}
+.newsdataNav .more_list a:hover, .newsdataNav .more_list .current {
+    color: #f34540;
+}
+
+
+.newsdata_wrap {
+    margin-top: 35px;
+    position: relative;
+    width: 600px;
+}
+.newsdataNavFixed {
+   /* animation: 0.8s ease 0s normal none 1 running bounceInDown;*/
+   /* height: 60px;*/
+    height: 50px;
+    position: fixed;
+    top: 65px;
+    z-index: 999;
+}
+.newsdataNavFixed ul {
+    box-shadow: 0 2px 3px #ddd;
+}
+
+.newsdataNav .refresh {
+    background: rgba(0, 0, 0, 0) url("./column_refresh.png") no-repeat scroll 0 0;
+    background-color: #f34540;
+    cursor: default;
+    /*float: left;*/
+    font: 16px/50px "Microsoft Yahei";
+    height: 50px;
+    overflow: hidden;
+    padding-left: 16px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 67px;
+}
+
+.newsdataNav .refresh:hover {
+    /*transform: translate3d(0px, -7px, 0px) rotate(180deg);*/
+    transform: translate3d(0px, 0px, 0px) rotate(180deg);
+}
+
+.newsdataNav .next_news_btn {
+    cursor: pointer;
+    /* display: none; */
+    display: block;
+    float: right;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    text-align: center;
+    width: 30px;
+}
+.newsdataNav .next_news_btn .bg {
+    /*background: #f33 none repeat scroll 0 0;*/
+    background: #BB3D00 none repeat scroll 0 0;
+    border-radius: 30px;
+    float: left;
+    height: 30px;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    transition: opacity 0.4s ease 0s;
+    width: 30px;
+}
+.newsdataNav .next_news_btn i {
+    background: rgba(0, 0, 0, 0) url("./column_refresh.png") no-repeat scroll 0 0;
+    float: left;
+    height: 30px;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    width: 30px;
+}
+.newsdataNav .next_news_btn:hover .bg {
+    opacity: 0.8;
+    /*transform: scale(1.8);*/
+}
+.next_news_btn:hover .x1 {
+    transition: all 0.4s ease 0s;
+    /*transform: translate3d(0px, -7px, 0px) rotate(180deg);*/
+    transform: translate3d(0px, 0px, 0px) rotate(180deg);
+}
+.next_news_btn .refresh-column {
+    transition: all 0.4s ease 0s;
+    transform: translate3d(0px, 0px, 0px) rotate(90deg);
+}
+/*  .newsdataNav .next_news_btn:hover .x2 {
+   top: -7px;
+}
+.newsdataNav .next_news_btn:hover strong {
+   opacity: 1;
+   top: 15px;
+} */

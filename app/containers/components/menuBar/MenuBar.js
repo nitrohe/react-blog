@@ -16,7 +16,7 @@ export default class MenuBar extends Component{
     }
 
     handleClick = (e) => {
-        console.log('click ', e);
+        //console.log('click ', e);
         if(e === 'Home'){
             //this.props.getArticleList('');
         }else if(e === 'Blog'){
@@ -35,7 +35,7 @@ export default class MenuBar extends Component{
         let _this = this;
 
         let liList = this.props.categories.map((item,index)=>(
-            <li key={item.name} className={item.name === _this.state.current ?  style.menuItemSel : style.menuItem} onClick={_this.handleClick.bind(this,item.name)}> {item.index} </li>
+            <li key={index} className={item.name === _this.state.current ?  style.menuItemSel : style.menuItem} onClick={_this.handleClick.bind(this,item.name)}> {item.index} </li>
         ));
 
         return(
