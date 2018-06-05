@@ -18,7 +18,6 @@ export function* getArticleList (tag,pageNum) {
 export function* getArticlesListFlow () {
     while (true){
         let req = yield take(FrontActionTypes.GET_ARTICLE_LIST);
-        console.log(req);
         let res = yield call(getArticleList,req.tag,req.pageNum);
         if(res){
             if(res.code === 0){
@@ -48,10 +47,69 @@ export function* getArticleDetailFlow () {
         let res = yield call(getArticleDetail,req.id);
         if(res){
             if(res.code === 0){
-                console.log("cs--articaldetail--data=",res.data);
                 yield put({type: FrontActionTypes.RESPONSE_ARTICLE_DETAIL,data:res.data});
             }else{
                 yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
+            }
+        }
+    }
+}
+export function* getCommentList () {
+    yield put({type: IndexActionTypes.FETCH_START});
+    try {
+        return yield call(get, `/getComments`);
+    } catch (err) {
+        yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
+    } finally {
+        yield put({type: IndexActionTypes.FETCH_END})
+    }
+}
+
+export function* getCommentListFlow () {
+    while (true){
+        let req = yield take(FrontActionTypes.GET_COMMENT_LIST);
+        let res = yield call(getCommentList);
+        if(res){
+            if(res.code === 0){
+                yield put({type: FrontActionTypes.RESPONSE_COMMENT_LIST,data:res.data});
+            }else{
+                yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
+            }
+        }
+    }
+}
+
+export function* addComment(data) {
+    yield put({type: IndexActionTypes.FETCH_START});
+    try {
+        return yield call(post, '/addComment', data);
+    } catch (err) {
+        yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
+    } finally {
+        yield put({type: IndexActionTypes.FETCH_END})
+    }
+}
+
+export function* addCommentFlow() {
+    while (true) {
+        let request = yield take(FrontActionTypes.ADD_COMMENT);
+        console.log("request=",request.data);
+        if (request.data.comment === '') {
+            yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '请输入留言', msgType: 0});
+        }
+        if (request.data.comment) {
+            let res = yield call(addComment, request.data);
+            if (res) {
+                if (res.code === 0) {
+                    yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 1});
+
+                    setTimeout(function () {
+                        location.replace('/Interact');
+                    }, 1000);
+
+                }  else {
+                    yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
+                }
             }
         }
     }

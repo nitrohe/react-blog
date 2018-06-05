@@ -37,7 +37,7 @@ class Home extends Component {
                 ?
                 <Redirect to='/404'/>
                 :
-                <DocumentTitle title={`${webTitle} | ²©¿Í`}>
+                <DocumentTitle title={`${webTitle} | åšå®¢`}>
                     <div className={style.contentContainer} >
                         <div className={style.contentMain} >
                             <ArticleList
@@ -76,7 +76,7 @@ Home.defaultProps = {
     userInfo: {},
     pageNum: 1,
     total: 0,
-    articleList: []
+    commentList: []
 };
 
 Home.propsTypes = {

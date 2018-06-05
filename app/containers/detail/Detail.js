@@ -26,7 +26,7 @@ class Detail extends Component{
         let webTitle = "Nitrohe's Blog";
         
         return(
-            <DocumentTitle title={`${webTitle} | ÎÄÕÂ`}>
+            <DocumentTitle title={`${webTitle} | æ–‡ç« `}>
                 <div className={`${style.container} ${style.contentContainer}`}>
                     <div className={style.contentMain}>
                         <h2>{title}</h2>
