@@ -4,7 +4,10 @@ const initialState = {
     articleDetail: {},
     pageNum: 1,
     total: 0,
-    commentList: []
+    commentList: [],
+    editorShow: '',
+    editorValue: '',
+    progressWidth: ''
 };
 export const actionTypes = {
     GET_ARTICLE_LIST: "GET_ARTICLE_LIST",
@@ -13,7 +16,10 @@ export const actionTypes = {
     RESPONSE_ARTICLE_DETAIL: "RESPONSE_ARTICLE_DETAIL",
     GET_COMMENT_LIST: "GET_COMMENT_LIST",
     RESPONSE_COMMENT_LIST: "RESPONSE_COMMENT_LIST",
-    ADD_COMMENT:"ADD_COMMENT"
+    ADD_COMMENT:"ADD_COMMENT",
+    SET_EDITOR_SHOW:"SET_EDITOR_SHOW",
+    SET_EDITOR_VALUE:"SET_EDITOR_VALUE",
+    SET_PROGRESS_WIDTH:"SET_PROGRESS_WIDTH"
 };
 
 export const actions = {
@@ -40,6 +46,24 @@ export const actions = {
             type:actionTypes.ADD_COMMENT,
             data
         }
+    },
+    set_editor_show:function (show) {
+        return{
+            type:actionTypes.SET_EDITOR_SHOW,
+            show
+        }
+    },
+    set_editor_value:function (value) {
+        return{
+            type:actionTypes.SET_EDITOR_VALUE,
+            value
+        }
+    },
+    set_progress_width:function (value) {
+        return{
+            type:actionTypes.SET_PROGRESS_WIDTH,
+            value
+        }
     }
 };
 
@@ -56,6 +80,18 @@ export function reducer(state = initialState, action) {
         case actionTypes.RESPONSE_COMMENT_LIST:
             return {
                 ...state, commentList: [...action.data.list]
+            };
+        case actionTypes.SET_EDITOR_SHOW:
+            return {
+                ...state, editorShow: action.show
+            };
+        case actionTypes.SET_EDITOR_VALUE:
+            return {
+                ...state, editorValue: action.value
+            };
+        case actionTypes.SET_PROGRESS_WIDTH:
+            return {
+                ...state, progressWidth: action.value
             };
         default:
             return state;

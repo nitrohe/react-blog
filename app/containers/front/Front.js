@@ -31,7 +31,7 @@ import Login from "../home/components/login/Login";
 import {Logined} from "../home/components/logined/Logined";
 import {actions as IndexActions} from '../../reducers/index'
 const {get_all_tags} = actions;
-const {get_article_list} = FrontActinos;
+const {get_article_list,set_progress_width} = FrontActinos;
 
 class Front extends Component{
     constructor(props){
@@ -40,8 +40,9 @@ class Front extends Component{
         this.clientHeight = document.body.clientHeight;
         this.scrollHeight = document.body.scrollHeight;
         this.scrollTop = 0;
-        this.state = { showBackTop: false, progressTimer: null, progressWidth: 0};
+        this.state = { showBackTop: false};
         this.progress = 0;
+        this.timer = '';
     }
     handleScroll(event) {
         this.scrollHeight = document.body.scrollHeight;
@@ -76,7 +77,8 @@ class Front extends Component{
         const {url} = this.props.match;
         const {login, register} = this.props;
         const showBackTop = this.state.showBackTop;
-        const progressWidth = this.state.progressWidth;
+        //const progressWidth = this.state.progressWidth;
+        const progressWidth = this.props.progressWidth;
         return(
             <div>
                 <div>
@@ -123,39 +125,41 @@ class Front extends Component{
         this.props.get_all_tags();
         //_this = this;
         window.addEventListener('scroll', this.handleScroll.bind(this));
+
     }
-    /*
+
+    ///*
     componentWillReceiveProps(nextProps) {
         let {isFetching} = this.props;
-        let timer = '';
         let _this = this;
-        console.log("isFetching=",isFetching);
-        //if(nextProps.isFetching){
-            if (!isFetching) {
-                //let progress = 0;
-                this.setState({progressWidth: 0});
+        if(nextProps.isFetching){
 
-                timer = setInterval(() => {
-                    console.log("_this.progress=",_this.progress);
-                    if (_this.progress <= 1300) {
-                        this.setState({progressWidth: _this.progress += 300})
-                    } else {
-                        this.setState({progressWidth: 0});
-                        // _this.progress = 0;
-                    }
-                }, 100);
-
-              this.setState({progressTimer: timer});
-            } else {
-                console.log("else _this.progress=",_this.progress);
-                clearInterval(this.state.progressTimer);
-                this.setState({progressWidth: 0});
                 _this.progress = 0;
+                this.props.set_progress_width(_this.progress)
 
-            }
-        //}
+                if(!_this.timer) {
+                    _this.timer = setInterval(() => {
+                        if (_this.progress <= 1300) {
+                            _this.progress += 200
+                            this.props.set_progress_width(_this.progress)
+                        } else {
+                            clearInterval(_this.timer);
+                            _this.progress = 0;
+                            _this.timer = '';
+                            this.props.set_progress_width(_this.progress)
+                        }
+                    }, 100);
+                }
+        } else {
+            //clearInterval(_this.state.progressTimer);
+            //this.setState({progressWidth: 0});
+            //if(this.props.progressWidth) {
+            //    _this.progress = 0;
+                //this.props.set_progress_width(_this.progress)
+            //}
+        }
     }
-    */
+    //*/
 }
 
 Front.defaultProps = {
@@ -170,7 +174,8 @@ function mapStateToProps(state) {
     return{
         categories:state.admin.tags,
         userInfo: state.globalState.userInfo,
-        isFetching: state.globalState.isFetching
+        isFetching: state.globalState.isFetching,
+        progressWidth: state.front.progressWidth
     }
 }
 function mapDispatchToProps(dispatch) {
@@ -178,7 +183,8 @@ function mapDispatchToProps(dispatch) {
         get_all_tags:bindActionCreators(get_all_tags,dispatch),
         get_article_list:bindActionCreators(get_article_list,dispatch),
         login: bindActionCreators(IndexActions.get_login, dispatch),
-        register: bindActionCreators(IndexActions.get_register, dispatch)
+        register: bindActionCreators(IndexActions.get_register, dispatch),
+        set_progress_width: bindActionCreators(set_progress_width, dispatch)
     }
 }
 export default connect(

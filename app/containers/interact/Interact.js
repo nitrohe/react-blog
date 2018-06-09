@@ -11,11 +11,11 @@ import CommentCell from './commentCell/CommentCell';
 //import EmojiTextarea from 'react-emoji-textarea';
 import ReactMarkdownEditor from '@webscopeio/react-markdown-editor';
 import dateFormat from 'dateformat'
-
+import QueueAnim from 'rc-queue-anim';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {actions as frontActions} from '../../reducers/frontReducer'
-const {get_comment_list,add_comment} = frontActions;
+const {get_comment_list,add_comment,set_editor_show, set_editor_value} = frontActions;
 
 
 class Interact extends Component{
@@ -26,40 +26,31 @@ class Interact extends Component{
         //this.state = {
         //    current:this.props.categories[0]
         //}
-        this.state = {
-          submitted: false,
-          text: "",
-          value: ''
-      }
-      //const ovClass ={header:`${style.header}`};
-      //const ovClass = {header:style.header};
+
     }
-    /*
-    handleClick = (e) => {
-        console.log('click ', e);
-        if(e === '首页'){
-            this.props.getArticleList('');
-        }else{
-            this.props.getArticleList(e);
-        }
-        let toPath = e === '首页'?'/':'/'+e;
-        this.setState({
-            current: e,
-        });
-        this.props.history.push(toPath);
-    };
-    */
-    //handleChange = (text) => this.setState({ text: text});
 
     handleSubmit = () => {
         let commentData = {};
-        commentData.visitor = 'submit1';
+        commentData.visitor = '';
         commentData.parent = '';
         commentData.type = '1';
-        commentData.comment = this.state.value;
+        //commentData.comment = this.state.value;
+        commentData.comment = this.props.editorValue;
         commentData.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
         console.log("commentData=",commentData);
         this.props.add_comment(commentData);
+        this.props.set_editor_value('');
+    }
+    onHandleAddComment = (data) => {
+        console.log("handleAddComment=",data);
+        this.props.add_comment(data);
+    }
+    onHandleClick = (show) => {
+
+        if(this.props.editorShow != show) {
+            this.props.set_editor_show(show);
+        }
+
     }
 
     render(){
@@ -68,28 +59,20 @@ class Interact extends Component{
         const ovClass = {header:style.header};
 
         let commentList = [];
+        ///*
         this.props.commentList.forEach(function(item, index){
             if(item.parent == '')
-                commentList.push(<CommentCell key={index} comment={item} list={_this.props.commentList}/>)
+                commentList.push(<CommentCell key={index} comment={item} list={_this.props.commentList} cellShow={_this.props.editorShow} onHandleAddComment={_this.onHandleAddComment.bind(_this)} onHandleClick={_this.onHandleClick.bind(_this)}/>)
         })
-
+        //*/
         return(
             <DocumentTitle title={`${webTitle} | 互动`}>
                 <div className={style.interactContain}>
-                    {/*
-                        <EmojiTextarea handleChange = {this.handleChange} handleSubmit = {this.handleSubmit} />
-                    */}
-                    {/*
-                        <ReactMarkdownEditor
-                          placeholder={'Write something ...'}
-                          value={this.state.value}
-                          onChange={({ target: { value } }) => this.setState({ value })}
-                        />
-                    */}
+
                     <ReactMarkdownEditor
                        placeholder={'Write something ...'}
-                       value={this.state.value}
-                       onChange={({ target: { value } }) => this.setState({ value })}
+                       value={this.props.editorValue}
+                       onChange={({ target: { value } }) => this.props.set_editor_value(value)}
                        classes={style}
                      />
                     <div className={style.footer}>
@@ -98,11 +81,9 @@ class Interact extends Component{
                         </div>
                     </div>
 
-
-                    {
-                        commentList
-                    }
-
+                    <QueueAnim type="bottom" >
+                        {commentList}
+                    </QueueAnim>
 
 
                 </div>
@@ -117,23 +98,31 @@ class Interact extends Component{
 
 }
 Interact.defaultProps = {
-    commentList: []
+    commentList: [],
+    editorShow: '',
+    editorValue: ''
 };
 
 Interact.propsTypes = {
-    commentList: PropTypes.array.isRequired
+    commentList: PropTypes.array.isRequired,
+    editorShow: PropTypes.string.isRequired,
+    editorValue: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        commentList: state.front.commentList
+        commentList: state.front.commentList,
+        editorShow: state.front.editorShow,
+        editorValue: state.front.editorValue
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         get_comment_list: bindActionCreators(get_comment_list, dispatch),
-        add_comment: bindActionCreators(add_comment, dispatch)
+        add_comment: bindActionCreators(add_comment, dispatch),
+        set_editor_show: bindActionCreators(set_editor_show, dispatch),
+        set_editor_value: bindActionCreators(set_editor_value, dispatch)
     }
 }
 

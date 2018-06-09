@@ -17,6 +17,9 @@ export default class MenuBar extends Component{
 
     handleClick = (e) => {
         //console.log('click ', e);
+        if(e == this.state.current) {
+            return ;
+        }
         if(e === 'Home'){
             //this.props.getArticleList('');
         }else if(e === 'Blog'){

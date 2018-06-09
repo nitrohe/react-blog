@@ -17,11 +17,17 @@
 	height: 0;
 	visibility: hidden;
 }
+
 .loginBox{
     float: right;
     position: relative;
     width: 100px;
     display: inline;
+}
+@media(max-width:880px) {
+    .loginBox{
+        display:none;
+    }
 }
 .loginMenu {
     background:#fff;
@@ -98,4 +104,6 @@
     margin-right: 8px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
     border-radius: 50%;
+    opacity:0.4;
+    filter:alpha(opacity=40);
 }

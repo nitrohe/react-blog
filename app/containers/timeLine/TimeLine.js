@@ -4,6 +4,7 @@ import React,{Component} from 'react'
 import style from './style.css'
 import {Icon} from 'antd';
 import DocumentTitle from 'react-document-title';
+import QueueAnim from 'rc-queue-anim';
 
 export default class TimeLine extends Component{
     constructor(props){
@@ -32,12 +33,13 @@ export default class TimeLine extends Component{
     render(){
         let _this = this;
         let webTitle = "Nitrohe's Blog";
-        
+
         return(
             <DocumentTitle title={`${webTitle} | 时间轴`}>
                 <div className={style.timeline}>
 
                     <div className={style.qwe}>
+                        <QueueAnim type="bottom" >
                         <div className={style.timelineRow} style={{marginBottom:10, marginTop:10, paddingBottom:50}}>
                             <div className={style.timelineTime} style={{marginLeft:-80, opacity:1}}>
                                 <small style={{fontSize:24}}>2017</small>
@@ -49,7 +51,8 @@ export default class TimeLine extends Component{
                             </div>
 
                         </div>
-                        <div className={style.timelineRow}>
+
+                        <div className={style.timelineRow} key="QA-T-1">
                             <div className={style.timelineTime}>
                                 <small>2017-04-01</small>
                             </div>
@@ -65,7 +68,7 @@ export default class TimeLine extends Component{
                                 </div>
                             </div>
                         </div>
-                        <div className={style.timelineRow}>
+                        <div className={style.timelineRow} key="QA-T-2">
                             <div className={style.timelineTime}>
                                 <small>2017-05-13</small>
                             </div>
@@ -82,7 +85,7 @@ export default class TimeLine extends Component{
                                 </div>
                             </div>
                         </div>
-                        <div className={style.timelineRow}>
+                        <div className={style.timelineRow} key="QA-T-3">
                             <div className={style.timelineTime}>
                                 <small>2017-05-17</small>
                             </div>
@@ -98,6 +101,7 @@ export default class TimeLine extends Component{
                                 </div>
                             </div>
                         </div>
+                        </QueueAnim>
                     </div>
 
                 </div>

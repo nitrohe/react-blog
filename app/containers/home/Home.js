@@ -12,6 +12,7 @@ import {actions as frontActions} from '../../reducers/frontReducer'
 const {get_article_list,get_article_detail} = frontActions;
 
 import DocumentTitle from 'react-document-title';
+import QueueAnim from 'rc-queue-anim';
 
 //zyf test for user login/register
 import Login from "../home/components/login/Login";
@@ -31,7 +32,7 @@ class Home extends Component {
         const {login, register} = this.props;
         localStorage.setItem('userInfo', JSON.stringify(this.props.userInfo));
         let webTitle = "Nitrohe's Blog";
-        
+
         return (
             tags.length > 1 && this.props.match.params.tag && (tags.indexOf(this.props.match.params.tag) === -1 || this.props.location.pathname.lastIndexOf('\/') > 0)
                 ?
@@ -39,12 +40,14 @@ class Home extends Component {
                 :
                 <DocumentTitle title={`${webTitle} | 博客`}>
                     <div className={style.contentContainer} >
+
                         <div className={style.contentMain} >
                             <ArticleList
                                 history={this.props.history}
                                 data={this.props.articleList}
                                 getArticleDetail={this.props.get_article_detail}
                             />
+
                             <div className={style.paginationContainer}>
                                 <Pagination
                                     defaultPageSize={5}
@@ -54,6 +57,7 @@ class Home extends Component {
                                     current={this.props.pageNum}
                                     total={this.props.total}/>
                             </div>
+
                         </div>
 
                         <div className={style.contentright}>

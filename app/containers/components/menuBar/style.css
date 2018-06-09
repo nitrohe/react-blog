@@ -22,7 +22,7 @@
     /*background:#2F3440;*/
     position: fixed;
 
-    z-index: 8;
+    z-index: 9;
     background: rgba(255,255,255,.8);
     width: 100%;
     padding: 0;
@@ -62,7 +62,8 @@
 	line-height: 26px;
 	height: 60px;
     min-width: 760px;
-    overflow: hidden;
+    /*overflow: hidden;*/
+    
 }
 .menuItem{
     position: relative;

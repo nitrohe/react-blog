@@ -5,6 +5,8 @@ import style from './style.css'
 import {Icon} from 'antd'
 import DocumentTitle from 'react-document-title';
 
+import QueueAnim from 'rc-queue-anim';
+
 export default class FriendLink extends Component{
     constructor(props){
         super(props);
@@ -14,21 +16,7 @@ export default class FriendLink extends Component{
             showLink:''
         }
     }
-    /*
-    handleClick = (e) => {
-        console.log('click ', e);
-        if(e === '首页'){
-            this.props.getArticleList('');
-        }else{
-            this.props.getArticleList(e);
-        }
-        let toPath = e === '首页'?'/':'/'+e;
-        this.setState({
-            current: e,
-        });
-        this.props.history.push(toPath);
-    };
-    */
+
     handleMouseEnter = () => {
         this.setState({showLink: style.expertsListShowLink});
     };
@@ -39,7 +27,7 @@ export default class FriendLink extends Component{
         let _this = this;
         let showClass = this.state.showLink;
         let webTitle = "Nitrohe's Blog";
-        
+
         return(
             <DocumentTitle title={`${webTitle} | 友链`}>
                 <div className={style.friendLink}>
@@ -55,9 +43,9 @@ export default class FriendLink extends Component{
                     </div>
 
 
-                    <div className={style.expertsListWrap }>
-
-                       <div className={style.expertsList}>
+                    <div className={style.expertsListWrap } >
+                        <QueueAnim type="bottom" >
+                        <div className={style.expertsList}  key="QA-F-1">
                             <dt>
                                 <a >
                                 <img className={style.expertHead} src={require('./2.jpg')}/>
@@ -80,7 +68,7 @@ export default class FriendLink extends Component{
                                 </div>
                             </a>
                         </div>
-
+                        </QueueAnim>
 
                     </div>
 

@@ -3,6 +3,7 @@ import React,{Component} from 'react'
 //import bindAll from 'lodash.bindall';
 import style from './style.css'
 import styleEditor from './styleEditor.css'
+import dateFormat from 'dateformat'
 
 import ReactMarkdownEditor from '@webscopeio/react-markdown-editor';
 
@@ -17,30 +18,42 @@ export default class CommentCell extends Component{
         this.state = {
           submitted: false,
           text: "",
-          value: 'Hello world',
-          commentShow:false
+          value: '',
+          commentShow:false,
+          parent: ""
         }
 
     }
-    handleClick(userName) {
+    handleClick(parentName,userName) {
         this.setState({commentShow: !this.state.commentShow});
+        this.setState({parent: parentName});
         if(Object.prototype.toString.call(userName) === "[object String]") {
             this.setState({value: `@${userName} `});
         } else {
             this.setState({value: ''});
         }
+        this.props.onHandleClick(parentName);
+
+    }
+    handleSubmit = () => {
+        let commentData = {};
+        commentData.visitor = 'submit2';
+        commentData.parent = this.state.parent;
+        commentData.type = '1';
+        commentData.comment = this.state.value;
+        commentData.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
+        console.log("commentData=",commentData);
+        this.props.onHandleAddComment(commentData);
     }
 
     render(){
         let _this = this;
         let {commentShow} = this.state;
-        let userName = 'ceshi';
-        let comment = this.props.comment;
-        let list = this.props.list;
-
+        let {list, comment, cellShow} = this.props;
+        let parentName = comment.visitor;
         let childList = [];
         this.props.list.forEach(function(item, index){
-            if(item.parent == comment.visitor)
+            if(item.parent == comment._id)
                 childList.push(item)
         })
 
@@ -55,7 +68,7 @@ export default class CommentCell extends Component{
                             <span>{item.visitor}</span>
                             <span>{item.time}</span>
                         </div>
-                        <a onClick={_this.handleClick.bind(_this,userName)}>huifu</a>
+                        <a onClick={_this.handleClick.bind(_this,comment._id,item.visitor)}>回复</a>
                     </div>
                     <div className={style.comentContent}>
                         <p>{item.comment}</p>
@@ -76,7 +89,7 @@ export default class CommentCell extends Component{
                             <span>{comment.visitor}</span>
                             <span>{comment.time}</span>
                         </div>
-                        <a onClick={this.handleClick.bind(this)}>回复</a>
+                        <a onClick={this.handleClick.bind(this,comment._id)}>回复</a>
                     </div>
                     <div className={style.comentContent}>
                         <p>{comment.comment}</p>
@@ -84,17 +97,18 @@ export default class CommentCell extends Component{
 
                     {childNode}
 
-                    {commentShow?
+                    {(cellShow==comment._id)?
                     <div className={style.comentEditor}>
                         <ReactMarkdownEditor
-                           placeholder={'Write something ...'}
+                           placeholder={''}
                            value={this.state.value}
                            onChange={({ target: { value } }) => this.setState({ value })}
                            classes={styleEditor}
+                           ref={ref => this.editor=ref}
                          />
                          <div className={style.footer}>
                              <div className={style.cdSeeAll}>
-                                 <a className={style.btnF} href="#about">Comment</a>
+                                 <a className={style.btnF} href="javascript:void(0);" onClick={this.handleSubmit.bind(this)}>Comment</a>
                              </div>
                          </div>
                     </div> : null}

@@ -47,7 +47,7 @@
 }
 .progressBar span {
     display: inline-block;
-    height: 5px;
+    height: 3px;
     width: 200px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -55,11 +55,11 @@
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
-    -webkit-transition: width .4s ease-in-out;
+    /*-webkit-transition: width .4s ease-in-out;
     -moz-transition: width .4s ease-in-out;
     -ms-transition: width .4s ease-in-out;
     -o-transition: width .4s ease-in-out;
-    transition: width .4s ease-in-out;
+    transition: width .4s ease-in-out;*/
 }
 
 
