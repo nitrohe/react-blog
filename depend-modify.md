@@ -31,7 +31,7 @@ return [toH(h, hast, settings.prefix), h2Text];
 
 ## affix
 
-修改文件位置：antd/lib/affix/index.js
+修改文件位置：antd/lib/affix/index.js 
 
 修改原因：使用anchor时，内部会用affix组件包住，没有可用的参数设置affix距离顶部的位置
 
@@ -40,6 +40,40 @@ function getTargetRect(target) {
     //zyf modify top from 0 to 70 
     return target !== window ? target.getBoundingClientRect() : { top: 70, left: 0, bottom: 0 };
 }
+```
+
+
+
+## react-markdown-editor
+
+重新编译(yarn)
+
+修改文件位置：react-markdown-editor/src/BaseMarkdownEditor.js
+
+修改原因：textarea不支持自定义样式，`className={styles.textarea}` amend `className={classes.textarea}` 
+
+```react
+<ReactTextareaAutocomplete
+    loadingComponent={Loading}
+    className={classes.textarea}
+    ref={(ref) => {
+        this.rtaRef = ref
+    }}
+    trigger={{
+        ':': {
+            dataProvider: token => emoji(token)
+                .slice(0, 10)
+                .filter(({char}) => char !== null)
+                .map(({ name, char, keywords }) => ({ name, char, keywords })),
+                component: AutocompleteItem,
+                    output: item => ({ text: item.char, caretPosition: 'next' }),
+        },
+        }}
+    {...textAreaProperties}
+    placeholder={this.props.placeholder}
+    value={this.props.value}
+    onChange={this.props.onChange}
+    />
 ```
 
 
