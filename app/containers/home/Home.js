@@ -20,6 +20,7 @@ import {Logined} from "../home/components/logined/Logined";
 import {actions as IndexActions} from '../../reducers/index'
 
 import ArticleBoxBlock from "../components/articleBoxBlock/ArticleBoxBlock";
+import TagCloud from "../components/tagCloud/TagCloud";
 
 class Home extends Component {
     constructor(props) {
@@ -49,13 +50,17 @@ class Home extends Component {
                             />
 
                             <div className={style.paginationContainer}>
+
+                                <QueueAnim delay="1000" type="bottom" >
                                 <Pagination
                                     defaultPageSize={5}
                                     onChange={(pageNum) => {
                                         this.props.get_article_list(this.props.match.params.tag || '', pageNum);
                                     }}
                                     current={this.props.pageNum}
-                                    total={this.props.total}/>
+                                    total={this.props.total}
+                                    key='QA-1'/>
+                                </QueueAnim>
                             </div>
 
                         </div>
@@ -63,7 +68,14 @@ class Home extends Component {
                         <div className={style.contentright}>
                             {this.props.userInfo.userId ? <Logined history={this.props.history} userInfo={this.props.userInfo}/> : <Login login={login} register={register}/>}
 
-                            <ArticleBoxBlock />
+                            {/*<TagCloud />*/}
+
+                            <ArticleBoxBlock
+                                history={this.props.history}
+                                data={this.props.articleList}
+                                getArticleDetail={this.props.get_article_detail}
+                            />
+
                         </div>
 
                     </div>
@@ -72,7 +84,10 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.props.get_article_list(this.props.match.params.tag || '');
+        if(this.props.articleList.length == 0){
+            //this.props.get_article_list(this.props.match.params.tag || '');
+            this.props.get_article_list('');
+        }
     }
 }
 
@@ -95,7 +110,8 @@ function mapStateToProps(state) {
         pageNum: state.front.pageNum,
         total: state.front.total,
         articleList: state.front.articleList,
-        userInfo: state.globalState.userInfo
+        userInfo: state.globalState.userInfo,
+        isFetching: state.globalState.isFetching
     }
 }
 

@@ -7,7 +7,9 @@ const initialState = {
     commentList: [],
     editorShow: '',
     editorValue: '',
-    progressWidth: ''
+    progressWidth: '',
+    friendLinkList: [],
+    timeLineList: []
 };
 export const actionTypes = {
     GET_ARTICLE_LIST: "GET_ARTICLE_LIST",
@@ -19,7 +21,11 @@ export const actionTypes = {
     ADD_COMMENT:"ADD_COMMENT",
     SET_EDITOR_SHOW:"SET_EDITOR_SHOW",
     SET_EDITOR_VALUE:"SET_EDITOR_VALUE",
-    SET_PROGRESS_WIDTH:"SET_PROGRESS_WIDTH"
+    SET_PROGRESS_WIDTH:"SET_PROGRESS_WIDTH",
+    GET_FRIEND_LINK_LIST: "GET_FRIEND_LINK_LIST",
+    RESPONSE_FRIEND_LINK_LIST: "RESPONSE_FRIEND_LINK_LIST",
+    GET_TIME_LINE_LIST: "GET_TIME_LINE_LIST",
+    RESPONSE_TIME_LINE_LIST: "RESPONSE_TIME_LINE_LIST"
 };
 
 export const actions = {
@@ -64,7 +70,17 @@ export const actions = {
             type:actionTypes.SET_PROGRESS_WIDTH,
             value
         }
-    }
+    },
+    get_friend_link_list: function () {
+        return {
+            type: actionTypes.GET_FRIEND_LINK_LIST
+        }
+    },
+    get_time_line_list: function () {
+        return {
+            type: actionTypes.GET_TIME_LINE_LIST
+        }
+    },
 };
 
 export function reducer(state = initialState, action) {
@@ -92,6 +108,14 @@ export function reducer(state = initialState, action) {
         case actionTypes.SET_PROGRESS_WIDTH:
             return {
                 ...state, progressWidth: action.value
+            };
+        case actionTypes.RESPONSE_FRIEND_LINK_LIST:
+            return {
+                ...state, friendLinkList: [...action.data.list]
+            };
+        case actionTypes.RESPONSE_TIME_LINE_LIST:
+            return {
+                ...state, timeLineList: [...action.data.list]
             };
         default:
             return state;

@@ -44,6 +44,13 @@ export default class ArticleBoxBlock extends Component{
         let _this = this;
         let visible = this.state.loginMenuShow;
 
+        let articleList = this.props.data.map((item,index)=>(
+            <li className={`${style.moTextOverflow} ${style.listGroupItem}`} key={index} onClick={()=>{props.history.push(`/detail/${item._id}`, {id:item._id});props.getArticleDetail(item._id)}}>
+                <a className={style.animate}>{item.title}</a>
+            </li>
+        ))
+
+
         return(
 
 
@@ -53,18 +60,7 @@ export default class ArticleBoxBlock extends Component{
                         <h4><span><em></em>文章推荐</span></h4>
                     </div>
                     <ul className={style.hotArticleList}>
-                        <li className={`${style.moTextOverflow} ${style.listGroupItem}`}>
-                            <a >文章测试1</a>
-                        </li>
-                        <li className={`${style.moTextOverflow} ${style.listGroupItem}`}>
-                            <a className={style.animate}>ceshishuju222</a>
-                        </li>
-                        <li className={`${style.moTextOverflow} ${style.listGroupItem}`}>
-                            <a className={style.animate}>ceshishuju333</a>
-                        </li>
-                        <li className={`${style.moTextOverflow} ${style.listGroupItem}`}>
-                            <a className={style.animate}>ceshishuju444</a>
-                        </li>
+                        {articleList}
                     </ul>
                 </div>
             </div>

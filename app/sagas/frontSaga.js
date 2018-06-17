@@ -115,3 +115,53 @@ export function* addCommentFlow() {
         }
     }
 }
+
+export function* getTimeLineList () {
+    yield put({type: IndexActionTypes.FETCH_START});
+    try {
+        return yield call(get, `/getTimeLine`);
+    } catch (err) {
+        yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
+    } finally {
+        yield put({type: IndexActionTypes.FETCH_END})
+    }
+}
+
+export function* getTimeLineListFlow () {
+    while (true){
+        let req = yield take(FrontActionTypes.GET_TIME_LINE_LIST);
+        let res = yield call(getTimeLineList);
+        if(res){
+            if(res.code === 0){
+                yield put({type: FrontActionTypes.RESPONSE_TIME_LINE_LIST,data:res.data});
+            }else{
+                yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
+            }
+        }
+    }
+}
+
+export function* getFriendLinkList () {
+    yield put({type: IndexActionTypes.FETCH_START});
+    try {
+        return yield call(get, `/getFriendLink`);
+    } catch (err) {
+        yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
+    } finally {
+        yield put({type: IndexActionTypes.FETCH_END})
+    }
+}
+
+export function* getFriendLinkListFlow () {
+    while (true){
+        let req = yield take(FrontActionTypes.GET_FRIEND_LINK_LIST);
+        let res = yield call(getFriendLinkList);
+        if(res){
+            if(res.code === 0){
+                yield put({type: FrontActionTypes.RESPONSE_FRIEND_LINK_LIST,data:res.data});
+            }else{
+                yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
+            }
+        }
+    }
+}

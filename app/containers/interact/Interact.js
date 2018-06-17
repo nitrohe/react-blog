@@ -21,12 +21,6 @@ const {get_comment_list,add_comment,set_editor_show, set_editor_value} = frontAc
 class Interact extends Component{
     constructor(props){
         super(props);
-        //bindAll(this, ['handleClick']);
-        //this.handleClick = this.handleClick.bind(this);
-        //this.state = {
-        //    current:this.props.categories[0]
-        //}
-
     }
 
     handleSubmit = () => {
@@ -93,7 +87,8 @@ class Interact extends Component{
     }
 
     componentDidMount() {
-        this.props.get_comment_list();
+        if(this.props.commentList.length == 0)
+            this.props.get_comment_list();
     }
 
 }

@@ -23,7 +23,7 @@ export default class MenuBar extends Component{
         if(e === 'Home'){
             //this.props.getArticleList('');
         }else if(e === 'Blog'){
-            this.props.getArticleList('');
+            //this.props.getArticleList('');
         }else{
             //this.props.getArticleList(e);
         }
@@ -49,7 +49,9 @@ export default class MenuBar extends Component{
                     <img className={style.menuLogoImg} style={{width:106,height:30}} title="Nitrohe的博客" src={require('./logo_black_2.png')} />
                 </div>
                 <div className={style.menuNav}>
-                    { liList }
+                    <ul className={style.menuNavUl}>
+                        { liList }
+                    </ul>
                 </div>
                 <LoginBox />
             </div>
