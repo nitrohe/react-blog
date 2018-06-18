@@ -20,6 +20,7 @@ import {actions} from '../reducers'
 import Admin from "./admin/Admin";
 import Front from './front/Front'
 import animationStyle from '../lib/animate.css'
+import DocumentMeta from 'react-document-meta';
 const {clear_msg, user_auth} = actions;
 
 class AppIndex extends Component {
@@ -43,7 +44,17 @@ class AppIndex extends Component {
 
     render() {
         let {isFetching} = this.props;
+        const meta = {
+            description: 'Nitrohe Blog',
+            meta: {
+                name: {
+                    keywords: 'react,vue,nodejs,php,html5,css3,linux'
+                }
+              }
+        };
+        
         return (
+            <DocumentMeta {...meta}>
             <Router>
                 <div>
                     <Switch>
@@ -59,6 +70,7 @@ class AppIndex extends Component {
                         null}
                 </div>
             </Router>
+            </DocumentMeta>
         )
     }
 
