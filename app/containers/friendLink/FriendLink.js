@@ -100,9 +100,13 @@ class FriendLink extends Component{
                         <div className={style.friendLinkPre}>
                             <div className={style.friendLinkInfo}>
                                 {/*<Icon type="file-add" style={{fontSize :24,color:"#fff",float:"left",paddingTop:8}} />*/}
-                                <p >友情链接</p>
+                                <QueueAnim type="left" delay="200">
+                                <p key="QA-1">友情链接</p>
+                                </QueueAnim>
                             </div>
-                            <p >欢迎喜欢技术、有原创的站点申请友链，请发送相关信息至nitrohe@163.com</p>
+                            <QueueAnim type="right" delay="200">
+                            <p key="QA-2">欢迎喜欢技术、有原创的站点申请友链，请发送相关信息至nitrohe@163.com</p>
+                            </QueueAnim>
                         </div>
                     </div>
 

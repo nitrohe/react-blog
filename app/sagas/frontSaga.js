@@ -93,7 +93,6 @@ export function* addComment(data) {
 export function* addCommentFlow() {
     while (true) {
         let request = yield take(FrontActionTypes.ADD_COMMENT);
-        console.log("request=",request.data);
         if (request.data.comment === '') {
             yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '请输入留言', msgType: 0});
         }
@@ -159,6 +158,31 @@ export function* getFriendLinkListFlow () {
         if(res){
             if(res.code === 0){
                 yield put({type: FrontActionTypes.RESPONSE_FRIEND_LINK_LIST,data:res.data});
+            }else{
+                yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
+            }
+        }
+    }
+}
+
+export function* getColumnList (site) {
+    yield put({type: IndexActionTypes.FETCH_START});
+    try {
+        return yield call(get, `/getColumn?site=${site}`);
+    } catch (err) {
+        yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
+    } finally {
+        yield put({type: IndexActionTypes.FETCH_END})
+    }
+}
+
+export function* getColumnListFlow () {
+    while (true){
+        let req = yield take(FrontActionTypes.GET_COLUMN_LIST);
+        let res = yield call(getColumnList,req.site);
+        if(res){
+            if(res.code === 0){
+                yield put({type: FrontActionTypes.RESPONSE_COLUMN_LIST,data:res.data});
             }else{
                 yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
             }
