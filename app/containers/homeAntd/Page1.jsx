@@ -9,7 +9,7 @@ import * as utils from './utils.jsx';
 
 const page1Data = [
   {
-    img: 'https://gw.alipayobjects.com/zos/rmsportal/URIeCOKLMAbRXaeXoNqN.svg',
+    img: require('./rmsportal/URIeCOKLMAbRXaeXoNqN.svg'),
     name: '设计价值观',
     nameEn: 'Design Values',
     to: '/docs/spec/values',
@@ -33,7 +33,7 @@ const page1Data = [
     ),
   },
   {
-    img: 'https://gw.alipayobjects.com/zos/rmsportal/qXncdwwUTTgUFnsbCNCE.svg',
+    img: require('./rmsportal/qXncdwwUTTgUFnsbCNCE.svg'),
     name: '视觉',
     nameEn: 'Visual',
     to: '/docs/spec/colors',
@@ -55,7 +55,7 @@ const page1Data = [
     ),
   },
   {
-    img: 'https://gw.alipayobjects.com/zos/rmsportal/YFXXZocxAgjReehpPNbX.svg',
+    img: require('./rmsportal/YFXXZocxAgjReehpPNbX.svg'),
     name: '可视化',
     nameEn: 'Visualization',
     to: '/docs/spec/visual',
@@ -77,7 +77,7 @@ const page1Data = [
     ),
   },
   {
-    img: 'https://gw.alipayobjects.com/zos/rmsportal/VPuetGsvJuYBwoDkZWFW.svg',
+    img: require('./rmsportal/VPuetGsvJuYBwoDkZWFW.svg'),
     name: '动效',
     nameEn: 'Animation',
     to: '/docs/spec/motion',

@@ -21,7 +21,7 @@ export default function svgBgToParallax(children, i = 0) {
   ));
   return svgChildren;
 }
-
+/*
 if (typeof window !== 'undefined') {
   // 图处预加载；
   const div = document.createElement('div');
@@ -56,3 +56,4 @@ if (typeof window !== 'undefined') {
     div.appendChild(img);
   });
 }
+*/
