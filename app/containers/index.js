@@ -29,21 +29,30 @@ class AppIndex extends Component {
         super(props);
         this.openNotification = this.openNotification.bind(this);
         this.shouldComponentUpdate = PureRenderMixiin.shouldComponentUpdate.bind(this);
+        this.info = '';
     }
 
     openNotification(type, message) {
         let that = this;
-        notification[type]({
-            message: message,
-            onClose: () => {
-                that.props.clear_msg();
-            }
-        });
-        that.props.clear_msg();
+        console.log("openNotification--",this,type,message);
+        //if(this.info == message) {
+            notification[type]({
+                message: message,
+                onClose: () => {
+                    that.props.clear_msg();
+                }
+            });
+            that.props.clear_msg();
+        //} else {
+        //    this.info = message;
+        //}
+        ///*
+
+        //*/
     };
 
     render() {
-        let {isFetching} = this.props;
+        let {isFetching, notification} = this.props;
         const meta = {
             description: 'Nitrohe Blog',
             meta: {
@@ -52,7 +61,7 @@ class AppIndex extends Component {
                 }
               }
         };
-        
+
         return (
             <DocumentMeta {...meta}>
             <Router>
@@ -84,8 +93,8 @@ class AppIndex extends Component {
 function mapStateToProps(state) {
     return {
         notification: state.globalState.msg,
-        isFetching: state.globalState.isFetching,
-        userInfo: state.globalState.userInfo,
+        //isFetching: state.globalState.isFetching,
+        //userInfo: state.globalState.userInfo,
     }
 }
 

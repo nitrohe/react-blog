@@ -23,10 +23,12 @@ class FriendLink extends Component{
     }
 
     handleMouseEnter = () => {
-        this.setState({showLink: style.expertsListShowLink});
+        if(this.state.showLink != style.expertsListShowLink)
+            this.setState({showLink: style.expertsListShowLink});
     };
     handleMouseLeave = () => {
-        this.setState({showLink: style.expertsListShowLink2});
+        if(this.state.showLink != style.expertsListShowLink2)
+            this.setState({showLink: style.expertsListShowLink2});
     };
     render(){
         let _this = this;

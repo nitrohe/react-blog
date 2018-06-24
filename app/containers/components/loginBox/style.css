@@ -39,6 +39,7 @@
     /*padding: 0 19px;*/
     position: absolute;
     top: 60px;
+    text-align: center;
    /*width: 620px;*/
 }
 .loginMenu a {
@@ -106,4 +107,71 @@
     border-radius: 50%;
     opacity:0.4;
     filter:alpha(opacity=40);
+}
+
+.loginModal{
+    height: 350px;
+    /*width: 590px;*/
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-radius: 4px;
+    margin: 20px 25px 20px 25px;
+    box-shadow: 0 6px 9px rgba(34, 31, 26, 0.27);
+}
+
+.loginModalLeft{
+    float: left;
+    border-right: 1px solid #ddd;
+    /*margin-left: 20px;*/
+    width: 300px;
+    display: inline;
+
+}
+.loginModalRight {
+    float: right;
+    width: 300px;
+    /*margin-left: 37px;*/
+    margin:0 auto;
+
+}
+.loginFormStyle{
+    width: 80%;
+    /*margin-left: 15%;*/
+    /*text-align: center;*/
+    /*padding-top: 30px;*/
+    margin:0 auto;
+}
+.loginButton{
+    width: 100%;
+}
+.loginLabel {
+    width: 80%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin:0 auto;
+    color: #333;
+    font-size: 14px;
+}
+
+.loginModalRight a {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ddd;
+    color: #333;
+    float: left;
+    font-size: 14px;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 20px 20px 35px;
+    text-align: center;
+    /*width: 200px;*/
+    width: 80%;
+    border-radius: 20px;
+
+}
+.wbLogin i {
+    /*background: rgba(0, 0, 0, 0) url("http://www.kuwo.cn/static/image/web/homePage/ugc/wbIcon.jpg") repeat scroll 0 0;
+    margin: 12px 10px 0 37px;*/
+}
+.qqLogin i {
+
 }

@@ -12,15 +12,23 @@ class LoginFormCom extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.props.login(values.userName,values.password)
+                if(this.props.modalState)
+                    this.props.login(values.userName,values.password);
+                else
+                    this.props.register(values);
+                this.props.callBack(false);
             }
         });
     };
 
     render() {
         const {getFieldDecorator} = this.props.form;
+        let _this = this;
+        const {modalState} = this.props;
+        let modalBut = modalState?"登录" : "注册";
+        console.log("modalState--",modalState);
         return (
-            <Form onSubmit={this.handleLogin} className={style.loginFormStyle}>
+            <Form onSubmit={_this.handleLogin.bind(_this)} className={style.loginFormStyle}>
                 <FormItem>
                     {getFieldDecorator('userName', {
                         rules: [{required: true, message: '请输入用户名!'}],
@@ -36,9 +44,21 @@ class LoginFormCom extends Component {
                                placeholder="密码"/>
                     )}
                 </FormItem>
+                {
+                    !modalState&&
+                    <FormItem>
+                        {getFieldDecorator('passwordRe', {
+                            rules: [{required: true, message: '请输入密码!'}],
+                        })(
+                            <Input prefix={<Icon type="lock" style={{fontSize: 13}}/>} type="password"
+                                   placeholder="再次输入密码"/>
+                        )}
+                    </FormItem>
+                }
+
                 <FormItem>
                     <Button className={style.loginButton} type="primary" htmlType="submit">
-                        登录
+                        {modalBut}
                     </Button>
                 </FormItem>
             </Form>

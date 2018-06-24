@@ -20,7 +20,7 @@ import {Logined} from "../home/components/logined/Logined";
 import {actions as IndexActions} from '../../reducers/index'
 
 import ArticleBoxBlock from "../components/articleBoxBlock/ArticleBoxBlock";
-import TagCloud from "../components/tagCloud/TagCloud";
+import TagClouds from "../components/tagCloud/TagClouds";
 
 class Home extends Component {
     constructor(props) {
@@ -66,9 +66,9 @@ class Home extends Component {
                         </div>
 
                         <div className={style.contentright}>
-                            {this.props.userInfo.userId ? <Logined history={this.props.history} userInfo={this.props.userInfo}/> : <Login login={login} register={register}/>}
+                            {/*this.props.userInfo.userId ? <Logined history={this.props.history} userInfo={this.props.userInfo}/> : <Login login={login} register={register}/>*/}
 
-                            {/*<TagCloud />*/}
+                            {<TagClouds />}
 
                             <ArticleBoxBlock
                                 history={this.props.history}

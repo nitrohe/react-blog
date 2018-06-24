@@ -63,3 +63,21 @@ export function* user_auth () {
         }
     }
 }
+
+export function* logout () {
+    while(true){
+        yield take(IndexActionTypes.USER_LOGOUT);
+        try {
+            yield put({type:IndexActionTypes.FETCH_START});
+            let response = yield call(get,'/user/logout');
+            if(response && response.code === 0){
+                yield put({type:IndexActionTypes.SET_MESSAGE,msgContent:'退出成功!',msgType:1});
+                yield put({type:IndexActionTypes.RESPONSE_USER_INFO,data:response.data})
+            }
+        }catch (err){
+            console.log(err);
+        }finally {
+            yield put({type: IndexActionTypes.FETCH_END});
+        }
+    }
+}

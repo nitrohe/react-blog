@@ -94,7 +94,7 @@ export default class HomeAntd extends Component {
               <Page1 {...childProps} />
               <Page2 {...childProps} />
               {/*<Page3 {...childProps} />*/}
-              {<style dangerouslySetInnerHTML={{ __html: getStyle() }} />}
+              {/*<style dangerouslySetInnerHTML={{ __html: getStyle() }} />*/}
             </div>
         </div>
       </DocumentTitle>

@@ -1,8 +1,9 @@
 import React,{Component} from 'react'
-import WordCloud from 'react-d3-cloud';
+//import WordCloud from 'react-d3-cloud';
+import { TagCloud } from 'react-tagcloud';
 import style from './style.css'
 
-export default class TagCloud extends Component{
+export default class TagClouds extends Component{
     constructor(props){
         super(props);
 
@@ -39,12 +40,24 @@ export default class TagCloud extends Component{
           { text: 'php', value: 100, rotate:60  },
           { text: 'Spider', value: 50, rotate:330  }
         ];
+        const dataTag = [
+
+            { value: "React", count: 25 },
+            { value: "Nodejs", count: 20 },
+            { value: "Express", count: 20 },
+            { value: "HTML5", count: 25 },
+            { value: "MongoDB", count: 20 },
+            { value: "CSS3", count: 20 },
+            { value: "linux", count: 20 },
+            { value: "php", count: 25 },
+            { value: "Vue", count: 25 },
+            { value: "Spider", count: 20 }
+        ];
 
         const fontSizeMapper = word => Math.log2(word.value) * 4;
         const rotate = word => word.rotate;
 
         return(
-
 
             <div className={style.tagCloudBox}>
                 <div >
@@ -52,17 +65,34 @@ export default class TagCloud extends Component{
                         <h4><span><em></em>标签云</span></h4>
                     </div>
                     <div className={style.tagCloudBoxContent}>
-                        <WordCloud
-                           data={data}
-                           fontSizeMapper={fontSizeMapper}
-                           rotate={rotate}
-                           width="290"
-                           height="200"
-                         />
+                        <TagCloud minSize={20}
+                            maxSize={30}
+                            tags={dataTag}
+                            onClick={tag => console.log(`'${tag.value}' was selected!`)} />
+
                     </div>
 
                 </div>
+
+                {/*
+                    <div >
+                        <div className={style.mainRtitle}>
+                            <h4><span><em></em>标签云</span></h4>
+                        </div>
+                        <div className={style.tagCloudBoxContent}>
+                            <WordCloud
+                               data={data}
+                               fontSizeMapper={fontSizeMapper}
+                               rotate={rotate}
+                               width="290"
+                               height="200"
+                             />
+                        </div>
+
+                    </div>
+                */}
             </div>
+
 
 
 

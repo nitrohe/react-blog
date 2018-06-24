@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import TweenOne from 'rc-tween-one';
 import QueueAnim from 'rc-queue-anim';
 import ScrollParallax from 'rc-scroll-anim/lib/ScrollParallax';
-import { Link } from 'bisheng/router';
+//import { Link } from 'bisheng/router';
+import {Link} from 'react-router-dom'
 //import { FormattedMessage } from 'react-intl';
 import GitHubButton from 'react-github-button';
 import BannerImage from './BannerImage.jsx';
@@ -67,16 +68,17 @@ class Banner extends React.PureComponent {
             {!isMobile && (
               <div className="banner-btns" key="buttons">
 
-                <Link className="banner-btn components" >
-                  开始
-                </Link>
-                <Link className="banner-btn language" >
+                <a className="banner-btn components" target="_blank" href='https://github.com/nitrohe/react-blog'>
+                  GitHub
+                </a>
+                <a className="banner-btn language" href='#page2'>
                   关于
-                </Link>
+                </a>
                 {/*<Link className="banner-btn language" to={utils.getLocalizedPathname('/docs/spec/introduce', isZhCN)}>
                   app.home.design-language
                 </Link>
                 */}
+               {/*
                 <GitHubButton
                   key="github-button"
                   size="large"
@@ -84,6 +86,7 @@ class Banner extends React.PureComponent {
                   namespace="nitrohe"
                   repo="react-blog"
                 />
+                */}
               </div>
             )}
           </QueueAnim>

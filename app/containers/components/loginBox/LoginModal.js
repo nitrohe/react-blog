@@ -3,10 +3,16 @@ import React,{Component} from 'react'
 //import bindAll from 'lodash.bindall';
 import style from './style.css'
 
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+//import {actions as FrontActinos} from '../../../reducers/frontReducer'
+import {actions as IndexActions} from '../../../reducers/index'
+const {get_login,get_register} = IndexActions;
+
 import { Modal, Button } from 'antd';
 import LoginForm from './LoginForm'
 
-export default class LoginModal extends Component{
+class LoginModal extends Component{
     constructor(props){
         super(props);
         //bindAll(this, ['handleClick']);
@@ -26,8 +32,10 @@ export default class LoginModal extends Component{
     render(){
         let _this = this;
         //let modalVisible = this.props.modalShow;
-        const {modalShow, onHandleCancel, onHandleSubmit} = this.props;
-        const loading = this.state.loading;
+        const {modalShow, modalState, onHandleCb} = this.props;
+        const {login, register} = this.props;
+        //const loading = this.state.loading;
+        let modalTitle = modalState?"登录" : "注册";
 
         return(
 
@@ -35,9 +43,9 @@ export default class LoginModal extends Component{
 
                 <Modal
                     visible={modalShow}
-                    title="登录"
-                    onOk={onHandleCancel}
-                    onCancel={onHandleCancel}
+                    title={modalTitle}
+                    onOk={() => onHandleCb(false)}
+                    onCancel={() => onHandleCb(false)}
                     width="700"
                     style={{ top: 30 }}
                     footer={[]}
@@ -45,8 +53,8 @@ export default class LoginModal extends Component{
 
                     <div className={style.loginModal}>
                         <div className={style.loginModalLeft}>
-                            <div className={style.loginLabel}>账号登录</div>
-                            <LoginForm login={this.handleLogin}/>
+                            <div className={style.loginLabel}>{`账号${modalTitle} `}</div>
+                            <LoginForm login={login} register={register} callBack={onHandleCb} modalState={modalState}/>
                         </div>
 
 
@@ -80,4 +88,30 @@ export default class LoginModal extends Component{
         })
     }
 
+
 }
+
+LoginModal.defaultProps = {
+    userInfo:[]
+};
+
+LoginModal.propTypes = {
+
+};
+
+function mapStateToProps(state) {
+    return{
+        userInfo: state.globalState.userInfo,
+        isFetching: state.globalState.isFetching
+    }
+}
+function mapDispatchToProps(dispatch) {
+    return{
+        login: bindActionCreators(get_login, dispatch),
+        register: bindActionCreators(get_register, dispatch)
+    }
+}
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoginModal)

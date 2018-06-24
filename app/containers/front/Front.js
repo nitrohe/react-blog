@@ -88,7 +88,7 @@ class Front extends Component{
                         <Banner/>
                         <Menus getArticleList={(tag)=>this.props.get_article_list(tag,1)} categories={this.props.categories} history={this.props.history}/>
                     */}
-                    <MenuBar getArticleList={(tag)=>this.props.get_article_list(tag,1)} categories={this.props.categories} history={this.props.history}/>
+                    <MenuBar categories={this.props.categories} history={this.props.history}/>
                     {showBackTop && <BackTop handleClick={this.backTop.bind(this)}/>}
                 </div>
 

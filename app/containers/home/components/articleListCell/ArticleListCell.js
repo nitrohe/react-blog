@@ -8,9 +8,7 @@ import {Link} from 'react-router-dom'
 
 export const ArticleListCell = (props)=>(
     <div className={`${style.container} `} onClick={()=>{props.history.push(`/detail/${props.data._id}`,{id:props.data._id});props.getArticleDetail(props.data._id)}} >
-        <div>
-            <img src={props.data.coverImg} alt=""/>
-        </div>
+
         <div className={style.bottomContainer}>
             <p className={style.title}>
                 {props.data.title}
@@ -44,6 +42,9 @@ export const ArticleListCell = (props)=>(
         		  <div className={style.shaft5}></div>
         		</div>
             </div>
+        </div>
+        <div className={style.imgContainer}>
+            <img src={props.data.coverImg} alt=""/>
         </div>
     </div>
 );

@@ -127,7 +127,7 @@ export default function BannerImage() {
                   <path d="M83.1700911,35.9320015 C63.5256194,37.9279025 44.419492,43.1766434 25.8517088,51.6782243 C14.3939956,57.7126276 7.77167019,64.8449292 7.77167019,72.4866248 C7.77167019,94.1920145 61.1993389,111.787709 127.105708,111.787709 C193.012078,111.787709 246.439746,94.1920145 246.439746,72.4866248 C246.439746,55.2822262 212.872939,40.6598106 166.13127,35.3351955" id="line-s" stroke="#0D1A26" strokeWidth="1.35" strokeLinecap="round" transform="translate(127.105708, 73.561453) rotate(-16.000000) translate(-127.105708, -73.561453) " />
                 </g>
                 <TweenOneG animation={animate.path}>
-                  <image id="id2" xlinkHref="https://gw.alipayobjects.com/zos/rmsportal/IauKICnGjGnotJBEyCRK.png" x="16" y="62" width="26px" height="26px" />
+                  <image id="id2" xlinkHref={require('./rmsportal/IauKICnGjGnotJBEyCRK.png')} x="16" y="62" width="26px" height="26px" />
                 </TweenOneG>
               </g>
             </TweenOneG>
