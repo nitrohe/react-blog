@@ -12,21 +12,7 @@ export default class HomePage extends Component{
         //    current:this.props.categories[0]
         //}
     }
-    /*
-    handleClick = (e) => {
-        console.log('click ', e);
-        if(e === '首页'){
-            this.props.getArticleList('');
-        }else{
-            this.props.getArticleList(e);
-        }
-        let toPath = e === '首页'?'/':'/'+e;
-        this.setState({
-            current: e,
-        });
-        this.props.history.push(toPath);
-    };
-    */
+
     render(){
         let _this = this;
 

@@ -26,7 +26,6 @@ class LoginFormCom extends Component {
         let _this = this;
         const {modalState} = this.props;
         let modalBut = modalState?"登录" : "注册";
-        console.log("modalState--",modalState);
         return (
             <Form onSubmit={_this.handleLogin.bind(_this)} className={style.loginFormStyle}>
                 <FormItem>

@@ -100,7 +100,7 @@ export function* addCommentFlow() {
             let res = yield call(addComment, request.data);
             if (res) {
                 if (res.code === 0) {
-                    //yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 1});
+                    yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 1});
                     /*
                     setTimeout(function () {
                         location.replace('/Interact');

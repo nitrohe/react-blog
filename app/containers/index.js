@@ -7,12 +7,12 @@ import {
     Redirect
 } from 'react-router-dom'
 import './reset.css'
-import {Detail} from './detail'
-import {Home} from './home'
-import Banner from "./components/banner/Banner";
-import Menus from "./components/menu/Menus";
+//import {Detail} from './detail'
+//import {Home} from './home'
+//import Banner from "./components/banner/Banner";
+//import Menus from "./components/menu/Menus";
+//import {Loading} from "./components/loading/Loading"
 import NotFound from "../components/notFound/NotFound";
-import {Loading} from "./components/loading/Loading"
 import {notification} from 'antd';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
@@ -27,32 +27,29 @@ class AppIndex extends Component {
 
     constructor(props) {
         super(props);
-        this.openNotification = this.openNotification.bind(this);
+        //this.openNotification = this.openNotification.bind(this);
         this.shouldComponentUpdate = PureRenderMixiin.shouldComponentUpdate.bind(this);
         this.info = '';
+        notification.config({
+          top:65,
+          duration:2
+        });
     }
 
     openNotification(type, message) {
         let that = this;
-        console.log("openNotification--",this,type,message);
-        //if(this.info == message) {
-            notification[type]({
-                message: message,
-                onClose: () => {
-                    that.props.clear_msg();
-                }
-            });
-            that.props.clear_msg();
-        //} else {
-        //    this.info = message;
-        //}
-        ///*
+        notification[type]({
+            message: message,
+            onClose: () => {
+                that.props.clear_msg();
+            }
+        });
+        that.props.clear_msg();
 
-        //*/
     };
 
     render() {
-        let {isFetching, notification} = this.props;
+        //let {isFetching, notification} = this.props;
         const meta = {
             description: 'Nitrohe Blog',
             meta: {
@@ -61,7 +58,6 @@ class AppIndex extends Component {
                 }
               }
         };
-
         return (
             <DocumentMeta {...meta}>
             <Router>
@@ -72,11 +68,11 @@ class AppIndex extends Component {
                         <Route component={Front}/>
                     </Switch>
                     {/*isFetching && <Loading/>*//*modify by zyf*/}
-                    {this.props.notification && this.props.notification.content ?
+                    {/*this.props.notification && this.props.notification.content ?
                         (this.props.notification.type === 1 ?
                             this.openNotification('success', this.props.notification.content) :
                             this.openNotification('error', this.props.notification.content)) :
-                        null}
+                        null*/}
                 </div>
             </Router>
             </DocumentMeta>
@@ -85,6 +81,14 @@ class AppIndex extends Component {
 
     componentDidMount() {
         this.props.user_auth();
+    }
+    componentWillReceiveProps(nextProps) {
+        //console.log("nextProps---",nextProps);
+        if(nextProps.notification && nextProps.notification.content) {
+            nextProps.notification.type === 1 ?
+                this.openNotification('success', nextProps.notification.content) :
+                this.openNotification('error', nextProps.notification.content)
+        }
     }
 
 }

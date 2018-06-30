@@ -85,6 +85,8 @@ export function* editArticleFlow () {
         if(res){
             if (res.code === 0) {
                 let title = res.data.title;
+                let img = res.data.coverImg;
+                let abstract = res.data.abstract;
                 let content = res.data.content;
                 let tags = res.data.tags;
                 let id = res.data._id;
@@ -92,6 +94,8 @@ export function* editArticleFlow () {
                 yield put({type:NewArticleTypes.UPDATING_TAGS,tags});
                 yield put({type:NewArticleTypes.UPDATING_CONTENT,content});
                 yield put({type:NewArticleTypes.UPDATING_TITLE,title});
+                yield put({type:NewArticleTypes.UPDATING_IMG,img});
+                yield put({type:NewArticleTypes.UPDATING_ABSTRACT,abstract});
             } else {
                 yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
             }

@@ -1,14 +1,9 @@
 import React,{Component} from 'react'
-//import {Menu} from 'antd'
-//import bindAll from 'lodash.bindall';
 import style from './style.css'
 
 export default class FootBar extends Component{
     constructor(props){
         super(props);
-        //this.state = {
-        //    current:this.props.categories[0]
-        //}
     }
 
 
@@ -26,12 +21,6 @@ export default class FootBar extends Component{
             </div>
 
         )
-    }
-
-    componentDidMount() {
-        //this.setState({
-        //    current:this.props.history.location.pathname.replace('\/','')||'首页'
-        //})
     }
 
 }

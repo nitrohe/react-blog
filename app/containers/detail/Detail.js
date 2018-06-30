@@ -5,7 +5,8 @@ import remark from 'remark'
 import {connect} from 'react-redux'
 import {actions} from "../../reducers/frontReducer";
 const {get_article_detail} = actions;
-import reactRenderer from 'remark-react'
+//import reactRenderer from 'remark-react'
+import reactRenderer from '../../../mlib/remark-react'
 import { Anchor } from 'antd';
 import style from './style.css'
 import DocumentTitle from 'react-document-title';
@@ -21,10 +22,10 @@ class Detail extends Component{
         const articleParse = remark().use(reactRenderer).processSync(articleContent).contents;
         const { Link } = Anchor;
         const articleAnchor = articleParse[1].map((item,index)=>(
-            <Link key={index} href={`#${item.h2}`} title={item.h2} />
+            <Link key={`{index}#${item.h2}`} href={`#${item.h2}`} title={item.h2} />
         ));
         let webTitle = "Nitrohe's Blog";
-        
+
         return(
             <DocumentTitle title={`${webTitle} | 文章`}>
                 <div className={`${style.container} ${style.contentContainer}`}>
@@ -49,7 +50,7 @@ class Detail extends Component{
                         </div>
                     </div>
                     <div className={style.contentright}>
-                        <Anchor offsetTop={30}>
+                        <Anchor offsetTop={80}>
                             {articleAnchor}
                         </Anchor>
                     </div>
@@ -68,6 +69,7 @@ class Detail extends Component{
         } else {
             this.props.get_article_detail(this.props.location.pathname.split('/')[2]);
         }
+        window.scrollTo(0,0);
 
     }
 }

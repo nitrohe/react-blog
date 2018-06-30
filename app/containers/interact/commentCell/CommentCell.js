@@ -1,26 +1,21 @@
 import React,{Component} from 'react'
-//import {Menu} from 'antd'
-//import bindAll from 'lodash.bindall';
 import style from './style.css'
 import styleEditor from './styleEditor.css'
 import dateFormat from 'dateformat'
 
-import ReactMarkdownEditor from '@webscopeio/react-markdown-editor';
+//import ReactMarkdownEditor from '@webscopeio/react-markdown-editor';
+import ReactMarkdownEditor from '../../../../mlib/@webscopeio/react-markdown-editor';
 
 export default class CommentCell extends Component{
     constructor(props){
         super(props);
-        //bindAll(this, ['handleClick']);
-        //this.handleClick = this.handleClick.bind(this);
-        //this.state = {
-        //    current:this.props.categories[0]
-        //}
+
         this.state = {
-          submitted: false,
-          text: "",
-          value: '',
-          commentShow:false,
-          parent: ""
+            submitted: false,
+            text: "",
+            value: '',
+            commentShow:false,
+            parent: ""
         }
 
     }
@@ -42,7 +37,7 @@ export default class CommentCell extends Component{
         commentData.type = '1';
         commentData.comment = this.state.value;
         commentData.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
-        console.log("commentData=",commentData);
+        //console.log("commentData=",commentData);
         this.props.onHandleAddComment(commentData);
     }
 
@@ -60,7 +55,7 @@ export default class CommentCell extends Component{
         let childNode = childList.map((item,index) => {
             return (<div  className={style.comentChild} key={index}>
                 <div className={style.comentImg}>
-                    <img src={require('./29.jpg')} />
+                    <img src={item.img} />
                 </div>
                 <div className={style.comentRightContain}>
                     <div className={style.comentInfo}>
@@ -80,7 +75,7 @@ export default class CommentCell extends Component{
         return(
             <div className={style.comentContainer}>
                 <div className={style.comentImg}>
-                    <img src={require('./28.jpg')} />
+                    <img src={comment.img} />
                 </div>
 
                 <div className={style.comentRightContain}>
@@ -108,7 +103,7 @@ export default class CommentCell extends Component{
                          />
                          <div className={style.footer}>
                              <div className={style.cdSeeAll}>
-                                 <a className={style.btnF} href="javascript:void(0);" onClick={this.handleSubmit.bind(this)}>Comment</a>
+                                 <a className={style.btnF} href="javascript:void(0);" onClick={this.handleSubmit.bind(this)}>评论</a>
                              </div>
                          </div>
                     </div> : null}

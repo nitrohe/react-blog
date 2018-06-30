@@ -14,13 +14,13 @@ const {get_article_list,get_article_detail} = frontActions;
 import DocumentTitle from 'react-document-title';
 import QueueAnim from 'rc-queue-anim';
 
-//zyf test for user login/register
-import Login from "../home/components/login/Login";
-import {Logined} from "../home/components/logined/Logined";
+//import Login from "../home/components/login/Login";
+//import {Logined} from "../home/components/logined/Logined";
 import {actions as IndexActions} from '../../reducers/index'
 
 import ArticleBoxBlock from "../components/articleBoxBlock/ArticleBoxBlock";
 import TagClouds from "../components/tagCloud/TagClouds";
+import ProfileIntro from "../components/profileIntro/ProfileIntro";
 
 class Home extends Component {
     constructor(props) {
@@ -56,6 +56,7 @@ class Home extends Component {
                                     defaultPageSize={5}
                                     onChange={(pageNum) => {
                                         this.props.get_article_list(this.props.match.params.tag || '', pageNum);
+                                        window.scrollTo(0,0);
                                     }}
                                     current={this.props.pageNum}
                                     total={this.props.total}
@@ -67,7 +68,7 @@ class Home extends Component {
 
                         <div className={style.contentright}>
                             {/*this.props.userInfo.userId ? <Logined history={this.props.history} userInfo={this.props.userInfo}/> : <Login login={login} register={register}/>*/}
-
+                            <ProfileIntro />
                             {<TagClouds />}
 
                             <ArticleBoxBlock

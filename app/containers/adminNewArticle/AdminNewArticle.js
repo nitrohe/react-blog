@@ -11,7 +11,7 @@ import {actions as tagActions} from "../../reducers/adminManagerTags";
 import dateFormat from 'dateformat'
 
 const {get_all_tags} = tagActions;
-const {update_content, update_tags, update_title, save_article} = actions;
+const {update_abstract,update_content, update_img, update_tags, update_title, save_article} = actions;
 const Option = Select.Option;
 
 class AdminNewArticle extends Component {
@@ -33,6 +33,14 @@ class AdminNewArticle extends Component {
     titleOnChange(e) {
         this.props.update_title(e.target.value)
     };
+    //标题输入框
+    abstractOnChange(e) {
+        this.props.update_abstract(e.target.value)
+    };
+    //图片输入框
+    imgOnChange(e) {
+        this.props.update_img(e.target.value)
+    };
 
     //选择标签
     selectTags(value) {
@@ -50,6 +58,8 @@ class AdminNewArticle extends Component {
     publishArticle() {
         let articleData = {};
         articleData.title = this.props.title;
+        articleData.coverImg = this.props.img;
+        articleData.abstract = this.props.abstract;
         articleData.content = this.props.content;
         articleData.tags = this.props.tags;
         articleData.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
@@ -61,6 +71,8 @@ class AdminNewArticle extends Component {
     saveArticle() {
         let articleData = {};
         articleData.title = this.props.title;
+        articleData.coverImg = this.props.img;
+        articleData.abstract = this.props.abstract;
         articleData.content = this.props.content;
         articleData.tags = this.props.tags;
         articleData.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
@@ -87,6 +99,18 @@ class AdminNewArticle extends Component {
                         type='text'
                         value={this.props.title}
                         onChange={this.titleOnChange.bind(this)}/>
+                    <span className={style.subTitle}>图片</span>
+                    <Input
+                        className={style.titleInput}
+                        placeholder={'请输入图片名称'}
+                        type='text'
+                        value={this.props.img}
+                        onChange={this.imgOnChange.bind(this)}/>
+                    <span className={style.subTitle}>摘要</span>
+                    <textarea
+                        className={style.abstractArea}
+                        value={this.props.abstract}
+                        onChange={this.abstractOnChange.bind(this)}/>
                     <span className={style.subTitle}>正文</span>
                     <textarea
                         className={style.textArea}
@@ -94,7 +118,7 @@ class AdminNewArticle extends Component {
                         onChange={this.onChanges.bind(this)}/>
                     <span className={style.subTitle}>分类</span>
                     <Select
-                        mode="multiple"
+                        mode="tags"
                         className={style.titleInput}
                         placeholder="请选择分类"
                         onChange={this.selectTags.bind(this)}
@@ -142,6 +166,8 @@ class AdminNewArticle extends Component {
 
 AdminNewArticle.propsTypes = {
     title: PropTypes.string,
+    img: PropTypes.string,
+    abstract: PropTypes.string,
     content: PropTypes.string,
     tags: PropTypes.array,
     tagsBase: PropTypes.array
@@ -149,13 +175,15 @@ AdminNewArticle.propsTypes = {
 
 AdminNewArticle.defaultProps = {
     title: '',
+    img: '',
+    abstract: '',
     content: '',
     tags: [],
     tagsBase: []
 };
 
 function mapStateToProps(state) {
-    const {title, content, tags} = state.admin.newArticle;
+    const {title, img, abstract, content, tags} = state.admin.newArticle;
     let tempArr = state.admin.tags;
     for (let i = 0; i < tempArr.length; i++) {
         if (tempArr[i] === '首页') {
@@ -164,6 +192,8 @@ function mapStateToProps(state) {
     }
     return {
         title,
+        img,
+        abstract,
         content,
         tags,
         tagsBase: tempArr
@@ -174,6 +204,8 @@ function mapDispatchToProps(dispatch) {
     return {
         update_tags: bindActionCreators(update_tags, dispatch),
         update_title: bindActionCreators(update_title, dispatch),
+        update_img: bindActionCreators(update_img, dispatch),
+        update_abstract: bindActionCreators(update_abstract, dispatch),
         update_content: bindActionCreators(update_content, dispatch),
         get_all_tags: bindActionCreators(get_all_tags, dispatch),
         save_article: bindActionCreators(save_article, dispatch)

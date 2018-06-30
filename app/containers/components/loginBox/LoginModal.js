@@ -1,6 +1,4 @@
 import React,{Component} from 'react'
-//import {Menu} from 'antd'
-//import bindAll from 'lodash.bindall';
 import style from './style.css'
 
 import {connect} from 'react-redux'
@@ -15,8 +13,6 @@ import LoginForm from './LoginForm'
 class LoginModal extends Component{
     constructor(props){
         super(props);
-        //bindAll(this, ['handleClick']);
-        //this.handleClick = this.handleClick.bind(this);
         this.state = {
             //current:this.props.categories[0]
             //loginMenuShow:'none',
@@ -46,7 +42,7 @@ class LoginModal extends Component{
                     title={modalTitle}
                     onOk={() => onHandleCb(false)}
                     onCancel={() => onHandleCb(false)}
-                    width="700"
+                    width="700px"
                     style={{ top: 30 }}
                     footer={[]}
                 >
@@ -81,13 +77,6 @@ class LoginModal extends Component{
 
         )
     }
-
-    componentDidMount() {
-        this.setState({
-            //current:this.props.history.location.pathname.replace('\/','')||'首页'
-        })
-    }
-
 
 }
 

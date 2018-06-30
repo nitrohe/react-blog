@@ -1,11 +1,15 @@
 const initialState={
     title:'',
+    img:'',
+    abstract:'',
     content:'',
     tags:[],
     id:''
 };
 export const actionTypes = {
     UPDATING_TITLE:"UPDATING_TITLE",
+    UPDATING_IMG:"UPDATING_IMG",
+    UPDATING_ABSTRACT:"UPDATING_ABSTRACT",
     UPDATING_CONTENT:"UPDATING_CONTENT",
     UPDATING_TAGS:"UPDATING_TAGS",
     SAVE_ARTICLE:"SAVE_ARTICLE",
@@ -16,6 +20,18 @@ export const actions = {
         return{
             type:actionTypes.UPDATING_TITLE,
             title
+        }
+    },
+    update_img:function (img) {
+        return{
+            type:actionTypes.UPDATING_IMG,
+            img
+        }
+    },
+    update_abstract:function (abstract) {
+        return{
+            type:actionTypes.UPDATING_ABSTRACT,
+            abstract
         }
     },
     update_content:function (content) {
@@ -44,6 +60,14 @@ export function reducer(state=initialState,action) {
         case actionTypes.UPDATING_TITLE:
             return{
                 ...state,title:action.title
+            };
+        case actionTypes.UPDATING_IMG:
+            return{
+                ...state,img:action.img
+            };
+        case actionTypes.UPDATING_ABSTRACT:
+            return{
+                ...state,abstract:action.abstract
             };
         case actionTypes.UPDATING_CONTENT:
             return{

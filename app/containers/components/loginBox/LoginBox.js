@@ -1,7 +1,4 @@
 import React,{Component} from 'react'
-//import {Menu} from 'antd'
-//import bindAll from 'lodash.bindall';
-
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 //import {actions as FrontActinos} from '../../../reducers/frontReducer'
@@ -14,8 +11,6 @@ import LoginModal from "./LoginModal";
 class LoginBox extends Component{
     constructor(props){
         super(props);
-        //bindAll(this, ['handleClick']);
-        //this.handleClick = this.handleClick.bind(this);
         this.state = {
             //current:this.props.categories[0]
             loginMenuShow:'none',
@@ -79,16 +74,18 @@ class LoginBox extends Component{
             <div className={style.loginBox}>
 
                 <div className={style.loginInfo} onMouseMove={this.handleMousemove.bind(this)}  onMouseOut={this.handleMouseout.bind(this)}>
-                    <img src={require('./visitor.png')} />
+
                     {
                         userState?(
                         <div>
+                        <img src={require('./visitor.png')} />
                         <a href="###" onClick={this.handleShowModal.bind(this,false)}>注册</a>
                         <div className={style.loginMenu} style={{display:visible}}>
                             <a  href="###" onClick={this.handleShowModal.bind(this,true)}>登&nbsp;&nbsp;录</a>
                             {/*<a href="###">QQ登录</a>*/}
                         </div></div>):(
                         <div>
+                        <img src={userInfo.userimg} />
                         <a href="###" >欢迎</a>
                         <div className={style.loginMenu} style={{display:visible}}>
                             <a  href="###" onClick={this.handleQuit.bind(this,true)}>退&nbsp;&nbsp;出</a>
@@ -108,11 +105,9 @@ class LoginBox extends Component{
         )
     }
 
-    componentDidMount() {
-        this.setState({
-            //current:this.props.history.location.pathname.replace('\/','')||'首页'
-        })
-    }
+    //componentDidMount() {
+    //
+    //}
 
 }
 

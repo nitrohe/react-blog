@@ -1,22 +1,17 @@
 import React,{Component, PropTypes} from 'react'
-//import {Menu} from 'antd'
-//import bindAll from 'lodash.bindall';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {actions as frontActions} from '../../reducers/frontReducer'
 const {get_column_list} = frontActions;
 
 import style from './style.css'
-import {Icon} from 'antd';
+//import {Icon} from 'antd';
 import DocumentTitle from 'react-document-title';
 import QueueAnim from 'rc-queue-anim';
 
 class Column extends Component{
     constructor(props){
         super(props);
-        //bindAll(this, ['handleClick']);
-        //this.handleClick = this.handleClick.bind(this);
-
         this.columnItem = ['CSDN','掘金','思否','IMweb','简书','WEB开发者','Smashingmagazine'];
         this.columnQuery = ['csdn','juejin','segmentfault','imweb','jianshu','admin10000','smashingmagazine'];
         this.state = {
@@ -29,7 +24,7 @@ class Column extends Component{
         if(e == this.state.current) {
             return ;
         }
-
+        window.scrollTo(0,0);
         this.setState({
             current: e
         });

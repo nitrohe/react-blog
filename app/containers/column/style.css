@@ -50,7 +50,8 @@
     margin:50px 0 20px
 }
 .columnUl{
-    font-size:16px
+    font-size:16px;
+    min-height: 550px;
 }
 .columnUl li{
     line-height:23px;

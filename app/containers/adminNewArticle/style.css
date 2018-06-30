@@ -18,6 +18,12 @@
     height: 400px;
     width: 100%;
 }
+.abstractArea{
+    border:solid thin #ddd;
+    margin:10px 0;
+    height: 80px;
+    width: 100%;
+}
 .subTitle{
     color: #373737;
     font-size: 14px;

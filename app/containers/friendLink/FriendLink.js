@@ -1,6 +1,4 @@
 import React,{Component, PropTypes} from 'react'
-//import {Menu} from 'antd'
-//import bindAll from 'lodash.bindall';
 import style from './style.css'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
@@ -15,72 +13,45 @@ import QueueAnim from 'rc-queue-anim';
 class FriendLink extends Component{
     constructor(props){
         super(props);
-        //bindAll(this, ['handleClick']);
-        //this.handleClick = this.handleClick.bind(this);
         this.state = {
             showLink:''
         }
     }
 
-    handleMouseEnter = () => {
-        if(this.state.showLink != style.expertsListShowLink)
-            this.setState({showLink: style.expertsListShowLink});
+    handleMouseEnter = (item) => {
+        //if(this.state.showLink != style.expertsListShowLink)
+        //    this.setState({showLink: style.expertsListShowLink});
+        if(this.state.showLink != item)
+            this.setState({showLink: item});
     };
-    handleMouseLeave = () => {
-        if(this.state.showLink != style.expertsListShowLink2)
-            this.setState({showLink: style.expertsListShowLink2});
+    handleMouseLeave = (item) => {
+        //if(this.state.showLink != item)
+            this.setState({showLink: ''});
     };
     render(){
         let _this = this;
-        let showClass = this.state.showLink;
+        let showLink = this.state.showLink;
         let webTitle = "Nitrohe's Blog";
-        /*
-        let friendLinkList = this.props.friendLinkList.map((item,index)=>(
-
-            <div className={style.expertsList}  key={index}>
-                <dt>
-                    <a >
-                    <img className={style.expertHead} src={require('./2.jpg')}/>
-                    </a>
-                </dt>
-
-                <a className={style.expertsListInfo} target="_blank"  title={item.sitename} >
-                    <div className={style.expertsListTitle}>
-                        <span>{item.sitename}</span>
-                    </div>
-                    <div className={style.i_w}>
-                        <div className={`${style.i} ${showClass}`} onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)}>
-                            <div className={style.c1}>
-                                <span>{item.describe}</span>
-                            </div>
-                            <div className={style.c2}>
-                                <ul><li >{item.link}</li></ul>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-        ))
-        */
 
         let friendLinkList = [];
         this.props.friendLinkList.forEach(function(item, index){
             let imgPath = item.img;
+            //let showClass = showLink==item.link?style.i:`${style.i} ${style.expertsListShowLink}`;
+            let showClass = showLink==item.link?`${style.i} ${style.expertsListShowLink}`:style.i;
 
             friendLinkList.push(<div className={style.expertsList}  key={index}>
                 <dt>
                     <a >
-                    <img className={style.expertHead} src={require('./'+imgPath)}/>
+                    <img className={style.expertHead} src={item.img}/>
                     </a>
                 </dt>
 
-                <a className={style.expertsListInfo} target="_blank"  title={item.sitename} >
+                <a className={style.expertsListInfo} href={item.link} target="_blank"  title={item.sitename} >
                     <div className={style.expertsListTitle}>
                         <span>{item.sitename}</span>
                     </div>
                     <div className={style.i_w}>
-                        <div className={`${style.i} ${showClass}`} onMouseEnter={_this.handleMouseEnter.bind(_this)} onMouseLeave={_this.handleMouseLeave.bind(_this)}>
+                        <div className={showClass} onMouseEnter={_this.handleMouseEnter.bind(_this,item.link)} onMouseLeave={_this.handleMouseLeave.bind(_this,item.link)}>
                             <div className={style.c1}>
                                 <span>{item.describe}</span>
                             </div>

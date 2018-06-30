@@ -32,7 +32,7 @@
   /*width:800px;*/
   flex-direction: row;
   /*flex-basis:100%*/
- display: none;
+  display: none;
 
 }
 
@@ -41,7 +41,7 @@
   font-size: 14px;
   /*width: calc(100% - 16px);*/
   /*width: 100%;*/
-  min-height: 100px;
+  min-height: 60px;
   line-height: 22px;
   border: 1px solid #d1d5da;
   border-radius: 3px;

@@ -7,28 +7,26 @@ import {
     Switch,
     Route
 } from 'react-router-dom'
-//--zyf
+
 //import Banner from "../components/banner/Banner";
-import Menus from "../components/menu/Menus";
+//import Menus from "../components/menu/Menus";
 import MenuBar from "../components/menuBar/MenuBar";
 import FootBar from "../components/footBar/FootBar";
-import HomePage from "../homePage/HomePage";
+//import HomePage from "../homePage/HomePage";
 import BackTop from "../components/backTop/BackTop";
-
 import Column from "../column/Column";
 import Interact from "../interact/Interact";
 import TimeLine from "../timeLine/TimeLine";
 import FriendLink from "../friendLink/FriendLink";
-import {Progress} from 'antd';
-
 import HomeAntd from "../homeAntd/index.jsx";
-
 import NotFound from "../../components/notFound/NotFound";
+
+import {Progress} from 'antd';
 import {bindActionCreators} from 'redux'
 import {actions} from '../../reducers/adminManagerTags'
 import {actions as FrontActinos} from '../../reducers/frontReducer'
-import Login from "../home/components/login/Login";
-import {Logined} from "../home/components/logined/Logined";
+//import Login from "../home/components/login/Login";
+//import {Logined} from "../home/components/logined/Logined";
 import {actions as IndexActions} from '../../reducers/index'
 const {get_all_tags} = actions;
 const {get_article_list,set_progress_width} = FrontActinos;
@@ -75,7 +73,7 @@ class Front extends Component{
     }
     render(){
         const {url} = this.props.match;
-        const {login, register} = this.props;
+        //const {login, register} = this.props;
         const showBackTop = this.state.showBackTop;
         //const progressWidth = this.state.progressWidth;
         const progressWidth = this.props.progressWidth;
@@ -182,8 +180,8 @@ function mapDispatchToProps(dispatch) {
     return{
         get_all_tags:bindActionCreators(get_all_tags,dispatch),
         get_article_list:bindActionCreators(get_article_list,dispatch),
-        login: bindActionCreators(IndexActions.get_login, dispatch),
-        register: bindActionCreators(IndexActions.get_register, dispatch),
+        //login: bindActionCreators(IndexActions.get_login, dispatch),
+        //register: bindActionCreators(IndexActions.get_register, dispatch),
         set_progress_width: bindActionCreators(set_progress_width, dispatch)
     }
 }

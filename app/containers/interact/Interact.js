@@ -1,15 +1,11 @@
 import React,{Component, PropTypes} from 'react'
-//import {Menu} from 'antd'
-//import bindAll from 'lodash.bindall';
 import style from './style.css'
 import DocumentTitle from 'react-document-title';
-
-//import {ComentCell} from './comentCell/ComentCell';
 import CommentCell from './commentCell/CommentCell';
-//import EmojiTextarea from './react-emoji-textarea';
-//import ReactMarkdownEditor from './react-markdown-editor';
 //import EmojiTextarea from 'react-emoji-textarea';
-import ReactMarkdownEditor from '@webscopeio/react-markdown-editor';
+//import ReactMarkdownEditor from '@webscopeio/react-markdown-editor';
+import ReactMarkdownEditor from '../../../mlib/@webscopeio/react-markdown-editor';
+
 import dateFormat from 'dateformat'
 import QueueAnim from 'rc-queue-anim';
 import {connect} from 'react-redux'
@@ -31,12 +27,12 @@ class Interact extends Component{
         //commentData.comment = this.state.value;
         commentData.comment = this.props.editorValue;
         commentData.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
-        console.log("commentData=",commentData);
+        //console.log("commentData=",commentData);
         this.props.add_comment(commentData);
         this.props.set_editor_value('');
     }
     onHandleAddComment = (data) => {
-        console.log("handleAddComment=",data);
+        //console.log("handleAddComment=",data);
         this.props.add_comment(data);
     }
     onHandleClick = (show) => {
@@ -70,13 +66,18 @@ class Interact extends Component{
                        classes={style}
                      />
                     <div className={style.footer}>
+                        <div className={style.footerTip}>
+                            <span>表情，:关键词</span>
+                        </div>
                         <div className={style.cdSeeAll}>
-                            <a className={style.btnF} href="javascript:void(0);" onClick={this.handleSubmit.bind(this)} >Comment</a>
+                            <a className={style.btnF} href="javascript:void(0);" onClick={this.handleSubmit.bind(this)} >留&nbsp;&nbsp;言</a>
                         </div>
                     </div>
 
                     <QueueAnim type="bottom" >
-                        {commentList}
+                        <div className={style.comentCellList}>
+                            {commentList}
+                        </div>
                     </QueueAnim>
 
 

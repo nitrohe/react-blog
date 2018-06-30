@@ -1,6 +1,4 @@
 import React,{Component, PropTypes} from 'react'
-//import {Menu} from 'antd'
-//import bindAll from 'lodash.bindall';
 import style from './style.css'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
@@ -35,8 +33,10 @@ class TimeLine extends Component{
                 </div>
                 <div className={`${style.panel} ${style.timelineContent}`}>
                     <div className={style.panelBody}>
-                        <h2>{item.title}</h2>
+                        {item.title?<h2>{item.title}</h2>:null}
                         <p>{item.content}</p>
+                        {item.img?<img className={style.imgResponsive} src={item.img} />:null}
+
                     </div>
                 </div>
             </div>

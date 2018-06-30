@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 //import WordCloud from 'react-d3-cloud';
 import { TagCloud } from 'react-tagcloud';
 import style from './style.css'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
 
 export default class TagClouds extends Component{
     constructor(props){
@@ -12,6 +13,7 @@ export default class TagClouds extends Component{
             modalVisible: false
 
         }
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
     }
 
 
@@ -99,10 +101,5 @@ export default class TagClouds extends Component{
         )
     }
 
-    componentDidMount() {
-        this.setState({
-            //current:this.props.history.location.pathname.replace('\/','')||'首页'
-        })
-    }
 
 }
