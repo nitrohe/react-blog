@@ -78,6 +78,14 @@ function getTargetRect(target) {
 
 
 
+## @jukben\emoji-search
+
+重新编译(yarn)npm run build时报错：ERROR in index-5353b33322ce416969f9.js from UglifyJs  Invalid assignment [index-5353b33322ce416969f9.js:6835,89] 
+
+修改：使用 <https://github.com/jukben/emoji-search/releases/tag/v1.1.6> 
+
+
+
 
 
 ## TODO

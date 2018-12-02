@@ -32,7 +32,8 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: ['babel-loader']
+                use: ['babel-loader']/*,
+                include: pathLib.resolve(__dirname, 'app/containers/homeAntd')*/
             },
             {
                 test: /\.css$/,
@@ -89,6 +90,7 @@ module.exports = {
         new webpack.DefinePlugin({
             "progress.env.NODE_ENV": JSON.stringify('development')
         }),
+        new webpack.optimize.UglifyJsPlugin(), //最小化一切
         new HtmlWebpackPlugin({
             title: "Nitrohe's Blog",
             showErrors: true,
@@ -104,12 +106,12 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: "manifest"
         })/*,
-        // modify by zyf
+        // modify
         new OpenBrowserPlugin({
             url: `http://${config.host}:${config.port}`
         })*/
     ],
     resolve: {
-        extensions: ['.js', '.json', '.sass', '.scss', '.less', 'jsx']
+        extensions: ['.js', 'jsx', '.json', '.sass', '.scss', '.less']
     }
 };

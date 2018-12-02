@@ -54,10 +54,10 @@ export function* getArticleDetailFlow () {
         }
     }
 }
-export function* getCommentList () {
+export function* getCommentList (type, aId) {
     yield put({type: IndexActionTypes.FETCH_START});
     try {
-        return yield call(get, `/getComments`);
+        return yield call(get, `/getComments?type=${type}&aId=${aId}`);
     } catch (err) {
         yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
     } finally {
@@ -68,7 +68,7 @@ export function* getCommentList () {
 export function* getCommentListFlow () {
     while (true){
         let req = yield take(FrontActionTypes.GET_COMMENT_LIST);
-        let res = yield call(getCommentList);
+        let res = yield call(getCommentList, req.cType, req.aId);
         if(res){
             if(res.code === 0){
                 yield put({type: FrontActionTypes.RESPONSE_COMMENT_LIST,data:res.data});

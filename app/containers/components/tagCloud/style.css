@@ -26,16 +26,18 @@
     color: #666633;
     border-bottom: 2px solid #edefee;
     display: block;
-    width: 100%;
+    /*width: 100%;*/
     height: 25px;
     line-height: 20px;
-    position: relative
+    position: relative;
+    float:left;
 }
 
 .mainRtitle h4 span em {
     position: absolute;
     display: block;
-    width: 70px;
+    /*width: 70px;*/
+    width: 100%;
     height: 2px;
     background-color: #666633;
     left: 0;

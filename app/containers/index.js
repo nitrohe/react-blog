@@ -52,8 +52,10 @@ class AppIndex extends Component {
         //let {isFetching, notification} = this.props;
         const meta = {
             description: 'Nitrohe Blog',
+
             meta: {
                 name: {
+                    viewport:'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
                     keywords: 'react,vue,nodejs,php,html5,css3,linux'
                 }
               }

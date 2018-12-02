@@ -45,9 +45,11 @@ export const actions = {
             id
         }
     },
-    get_comment_list: function () {
+    get_comment_list: function (cType, aId) {
         return {
-            type: actionTypes.GET_COMMENT_LIST
+            type: actionTypes.GET_COMMENT_LIST,
+            cType,
+            aId
         }
     },
     add_comment:function (data) {

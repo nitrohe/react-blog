@@ -21,6 +21,7 @@ import {actions as IndexActions} from '../../reducers/index'
 import ArticleBoxBlock from "../components/articleBoxBlock/ArticleBoxBlock";
 import TagClouds from "../components/tagCloud/TagClouds";
 import ProfileIntro from "../components/profileIntro/ProfileIntro";
+import News from "./components/news/News";
 
 class Home extends Component {
     constructor(props) {
@@ -43,6 +44,7 @@ class Home extends Component {
                     <div className={style.contentContainer} >
 
                         <div className={style.contentMain} >
+                            <News />
                             <ArticleList
                                 history={this.props.history}
                                 data={this.props.articleList}

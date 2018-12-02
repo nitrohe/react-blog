@@ -9,6 +9,8 @@
     "start-prod": "cross-env NODE_ENV=production node ./server/index.js",
     "watch-client": "cross-env NODE_ENV=development node ./server/index.js",
     "start-dev-api": "nodemon --watch server/api server/api/index.js",
+    "build1": "webpack --config webpack.prod.js",
+    "analyz": "cross-env NODE_ENV=production npm_config_report=true npm run build1",
     "start": "npm run watch-client & npm run start-dev-api"
   },
   "repository": {
@@ -22,7 +24,9 @@
   },
   "homepage": "https://github.com/nitrohe/react-blog.git#readme",
   "dependencies": {
+    "@jukben/emoji-search": "^1.1.7",
     "@webscopeio/react-markdown-editor": "^1.0.4",
+    "@webscopeio/react-textarea-autocomplete": "^2.3.0",
     "antd": "^2.13.1",
     "axios": "^0.16.2",
     "bluebird": "^3.5.0",
@@ -58,8 +62,11 @@
     "redux-saga": "^0.15.6",
     "remark": "^8.0.0",
     "remark-react": "^4.0.1",
+    "remark-react-lowlight": "^0.7.0",
     "serialize-javascript": "^1.4.0",
-    "serve-favicon": "^2.4.4"
+    "serve-favicon": "^2.4.4",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-bundle-size-analyzer": "^2.7.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.4",

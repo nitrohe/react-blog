@@ -1,14 +1,18 @@
 import React,{Component} from 'react'
 import style from './style.css'
-import styleEditor from './styleEditor.css'
+//import styleEditor from './styleEditor.css'
 import dateFormat from 'dateformat'
-
+import PureRenderMixin from 'react-addons-pure-render-mixin'
 //import ReactMarkdownEditor from '@webscopeio/react-markdown-editor';
-import ReactMarkdownEditor from '../../../../mlib/@webscopeio/react-markdown-editor';
+//import ReactMarkdownEditor from '../../../../mlib/@webscopeio/react-markdown-editor';
+import ReactTextareaAutocomplete from '@webscopeio/react-textarea-autocomplete';
+import emoji from "@jukben/emoji-search";
+import "@webscopeio/react-textarea-autocomplete/style.css";
 
 export default class CommentCell extends Component{
     constructor(props){
         super(props);
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
 
         this.state = {
             submitted: false,
@@ -22,6 +26,8 @@ export default class CommentCell extends Component{
     handleClick(parentName,userName) {
         this.setState({commentShow: !this.state.commentShow});
         this.setState({parent: parentName});
+        //if(typeof )
+        console.log("this.textarea.value--",this.textarea);
         if(Object.prototype.toString.call(userName) === "[object String]") {
             this.setState({value: `@${userName} `});
         } else {
@@ -32,10 +38,14 @@ export default class CommentCell extends Component{
     }
     handleSubmit = () => {
         let commentData = {};
+        let commentType = this.props.type || 1;
+        let articleId = this.props.articleid || '';
         commentData.visitor = 'submit2';
         commentData.parent = this.state.parent;
-        commentData.type = '1';
-        commentData.comment = this.state.value;
+        commentData.type = commentType;
+        commentData.aId = articleId;
+        //commentData.comment = this.state.value;
+        commentData.comment = this.textarea.value;
         commentData.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
         //console.log("commentData=",commentData);
         this.props.onHandleAddComment(commentData);
@@ -72,6 +82,9 @@ export default class CommentCell extends Component{
             </div>)
         })
 
+        const Loading = ({ data }) => <div>Loading</div>;
+        const Item = ({ entity: { name, char } }) => <div>{`${name}: ${char}`}</div>;
+
         return(
             <div className={style.comentContainer}>
                 <div className={style.comentImg}>
@@ -94,6 +107,7 @@ export default class CommentCell extends Component{
 
                     {(cellShow==comment._id)?
                     <div className={style.comentEditor}>
+                        {/*
                         <ReactMarkdownEditor
                            placeholder={''}
                            value={this.state.value}
@@ -101,6 +115,28 @@ export default class CommentCell extends Component{
                            classes={styleEditor}
                            ref={ref => this.editor=ref}
                          />
+                         */}
+
+                         <ReactTextareaAutocomplete
+                            className={style.textarea}
+                            loadingComponent={Loading}
+                            containerStyle={{background: "#f6f8fa"}}
+                            style={{fontSize: "14px",lineHeight: "16px",margin: "0 auto",width:"95%",background: "#f6f8fa"}}
+                            ref={(rta) => { this.rta = rta; } }
+                            innerRef={(textarea) => { this.textarea = textarea; if(this.textarea&&this.textarea.value.length==0) {this.textarea.value=this.state.value;this.textarea.focus()}} }
+
+                            minChar={0}
+                            trigger={{
+                                ":": {
+                                    dataProvider: token => {
+                                        return emoji(token).slice(0, 5).map(({ name, char }) => ({ name, char}));
+                                    },
+                                    component: Item,
+                                    output: (item, trigger) => item.char
+                               }
+                            }}
+                         />
+
                          <div className={style.footer}>
                              <div className={style.cdSeeAll}>
                                  <a className={style.btnF} href="javascript:void(0);" onClick={this.handleSubmit.bind(this)}>评论</a>

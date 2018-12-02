@@ -39,8 +39,8 @@ class FriendLink extends Component{
             //let showClass = showLink==item.link?style.i:`${style.i} ${style.expertsListShowLink}`;
             let showClass = showLink==item.link?`${style.i} ${style.expertsListShowLink}`:style.i;
 
-            friendLinkList.push(<div className={style.expertsList}  key={index}>
-                <dt>
+            friendLinkList.push(<div className={style.expertsList}  key={index} >
+                <dt >
                     <a >
                     <img className={style.expertHead} src={item.img}/>
                     </a>
@@ -76,19 +76,23 @@ class FriendLink extends Component{
                                 <QueueAnim type="left" delay="200">
                                 <p key="QA-1">友情链接</p>
                                 </QueueAnim>
+                                <QueueAnim type="right" delay="200">
+                                <p key="QA-2">欢迎喜欢技术、有原创的站点申请友链，请发送相关信息至nitrohe@163.com</p>
+                                </QueueAnim>
                             </div>
-                            <QueueAnim type="right" delay="200">
-                            <p key="QA-2">欢迎喜欢技术、有原创的站点申请友链，请发送相关信息至nitrohe@163.com</p>
-                            </QueueAnim>
+
                         </div>
                     </div>
 
 
                     <div className={style.expertsListWrap } >
-                        <QueueAnim type="bottom" >
-                            {friendLinkList}
-                        </QueueAnim>
 
+                        <div className={style.expertsListContainer } key="QA-3">
+
+                            {friendLinkList}
+
+                        </div>
+                        
                     </div>
 
 

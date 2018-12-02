@@ -26,7 +26,7 @@ textarea {
 
 a {
     text-decoration: none;
-    color: #656565;
+    /*color: #656565;*/
 }
 
 /*清浮动*/
@@ -51,31 +51,3 @@ a {
 body {
     background: #eee;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

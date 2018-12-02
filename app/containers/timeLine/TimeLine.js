@@ -27,9 +27,9 @@ class TimeLine extends Component{
                     <small>{item.time}</small>
                 </div>
                 <div className={style.timelineIcon}>
-                    <div >
+                    {/*<div >
                         <Icon type="edit" style={{color:'#aaa'}}/>
-                    </div>
+                    </div>*/}
                 </div>
                 <div className={`${style.panel} ${style.timelineContent}`}>
                     <div className={style.panelBody}>
@@ -54,9 +54,9 @@ class TimeLine extends Component{
                                 <small style={{fontSize:24}}>2017</small>
                             </div>
                             <div className={style.timelineIcon}>
-                                <div >
+                                {/*<div >
                                     <Icon type="pushpin-o"  style={{color:'#aaa'}} />
-                                </div>
+                                </div>*/}
                             </div>
 
                         </div>

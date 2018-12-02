@@ -116,10 +116,17 @@ export default class ProfileIntro extends Component{
                     </div>
                     <div className={style.profileIntroContent}>
 
-                        <div className={style.profileIntroUserInfo}>
+                        {/*<div className={style.profileIntroUserInfo}>
                             <img src='/favicon.png' />
                             <span>nitrohe</span>
 
+                        </div>*/}
+
+                        <div className={style.profileIntroContact}>
+                            {/*<a><img src='/svg/cat.svg' alt="icon" /></a>
+                            <a><img src='/svg/outlook.svg' alt="icon" /></a>*/}
+                            {svgIcon}
+                            {/*<Icon type="gitlab"  style={{ fontSize: 26}}/>*/}
                         </div>
 
                         <div className={style.profileIntroBlogInfo}>
@@ -137,12 +144,7 @@ export default class ProfileIntro extends Component{
                             </div>
                         </div>
 
-                        <div className={style.profileIntroContact}>
-                            {/*<a><img src='/svg/cat.svg' alt="icon" /></a>
-                            <a><img src='/svg/outlook.svg' alt="icon" /></a>*/}
-                            {svgIcon}
-                            {/*<Icon type="gitlab"  style={{ fontSize: 26}}/>*/}
-                        </div>
+
 
                     </div>
 

@@ -15,13 +15,14 @@ import FootBar from "../components/footBar/FootBar";
 //import HomePage from "../homePage/HomePage";
 import BackTop from "../components/backTop/BackTop";
 import Column from "../column/Column";
-import Interact from "../interact/Interact";
+//import Interact from "../interact/Interact";
+import InteractPage from "../interact/InteractPage";
 import TimeLine from "../timeLine/TimeLine";
 import FriendLink from "../friendLink/FriendLink";
 import HomeAntd from "../homeAntd/index.jsx";
 import NotFound from "../../components/notFound/NotFound";
 
-import {Progress} from 'antd';
+//import {Progress} from 'antd';
 import {bindActionCreators} from 'redux'
 import {actions} from '../../reducers/adminManagerTags'
 import {actions as FrontActinos} from '../../reducers/frontReducer'
@@ -105,7 +106,8 @@ class Front extends Component{
                         <Route path={`/Timeline`} component={TimeLine}/>
                         <Route path={`/FriendLink`} component={FriendLink}/>
                         <Route path={`/Column`} component={Column}/>
-                        <Route path={`/Interact`} component={Interact}/>
+                        {/*<Route path={`/Interact`} component={Interact}/>*/}
+                        {<Route path={`/Interact`} component={InteractPage}/>}
                         <Route path={`/detail/:id`} component={Detail}/>
                         <Route path={`/:tag`} component={Home}/>
                         <Route component={NotFound}/>

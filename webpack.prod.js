@@ -10,10 +10,13 @@ const ENTRY_PATH = pathLib.resolve(ROOT_PATH, 'app');
 const OUTPUT_PATH = pathLib.resolve(ROOT_PATH, 'build');
 console.log(pathLib.resolve(ENTRY_PATH, 'index.js'));
 
+const WebpackBundleSizeAnalyzerPlugin = require('webpack-bundle-size-analyzer').WebpackBundleSizeAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 module.exports = {
     entry: {
         index: ['babel-polyfill',pathLib.resolve(ENTRY_PATH, 'index.js')],
-        vendor: ['react', 'react-dom', 'react-router-dom']
+        vendor: ['react', 'react-dom', 'react-router-dom', 'redux', 'react-redux', 'redux-saga']
     },
     output: {
         path: OUTPUT_PATH,
@@ -79,16 +82,29 @@ module.exports = {
         ]
     },
     plugins: [
+        //new WebpackBundleSizeAnalyzerPlugin('./plain-report.txt'),
+        new BundleAnalyzerPlugin(),
         new CleanPlugin(['build']),
         new ProgressBarPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),//改善chunk传输
+        //new webpack.DefinePlugin({
+        //    "progress.env.NODE_ENV": JSON.stringify('production')
+        //}),
         new webpack.DefinePlugin({
-            "progress.env.NODE_ENV": JSON.stringify('production')
+            "process.env": {
+                "NODE_ENV": JSON.stringify("production")
+            }
         }),
+        //new webpack.optimize.UglifyJsPlugin(), //最小化一切
         new webpack.optimize.UglifyJsPlugin({
-          output: {
-            comments: false,  // remove all comments
-          }
+            sourceMap: false,
+            show_copyright: false,
+            comments: false,
+            compress: {
+               warnings: false,
+               drop_debugger: true,
+               drop_console: true
+           }
         }), //最小化一切
         new HtmlWebpackPlugin({
             title: "Nitrohe's Blog",
@@ -104,7 +120,7 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             minChunks: function (module) {
-                return module.context && module.context.indexOf('node_modules') !== -1;
+                return module.context && module.context.indexOf('node_modules') == -1;
             }
         }),
         new webpack.optimize.CommonsChunkPlugin({
@@ -115,4 +131,3 @@ module.exports = {
         extensions: ['.js', '.json', '.sass', '.scss', '.less', 'jsx']
     }
 };
-
