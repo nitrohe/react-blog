@@ -12,16 +12,47 @@ import './reset.css'
 //import Banner from "./components/banner/Banner";
 //import Menus from "./components/menu/Menus";
 //import {Loading} from "./components/loading/Loading"
-import NotFound from "../components/notFound/NotFound";
-import {notification} from 'antd';
+//import NotFound from "../components/notFound/NotFound";
+import {notification, Icon} from 'antd';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {actions} from '../reducers'
-import Admin from "./admin/Admin";
-import Front from './front/Front'
+//import Admin from "./admin/Admin";
+//import Front from './front/Front'
 import animationStyle from '../lib/animate.css'
 import DocumentMeta from 'react-document-meta';
 const {clear_msg, user_auth} = actions;
+
+
+import Loadable from 'react-loadable';
+
+const Loading = ({ pastDelay, timedOut, error }) => {
+  if (pastDelay) {
+    return <div><Icon type="loading" /></div>;
+  } else if (timedOut) {
+    return <div>Taking a long time...</div>;
+  } else if (error) {
+    return <div>Error!</div>;
+  }
+  return null;
+};
+
+const FrontLoadable = Loadable({
+  loader: () => import('./front/Front'),
+  loading: Loading,
+  timeout: 10000
+});
+const AdminLoadable = Loadable({
+  loader: () => import('./admin/Admin'),
+  loading: Loading,
+  timeout: 10000
+});
+const NotFoundLoadable = Loadable({
+  loader: () => import('../components/notFound/NotFound'),
+  loading: Loading,
+  timeout: 10000
+});
+
 
 class AppIndex extends Component {
 
@@ -65,9 +96,9 @@ class AppIndex extends Component {
             <Router>
                 <div>
                     <Switch>
-                        <Route path='/404' component={NotFound}/>
-                        <Route path='/admin' component={Admin}/>
-                        <Route component={Front}/>
+                        <Route path='/404' component={NotFoundLoadable}/>
+                        <Route path='/admin' component={AdminLoadable}/>
+                        <Route component={FrontLoadable}/>
                     </Switch>
                     {/*isFetching && <Loading/>*//*modify by zyf*/}
                     {/*this.props.notification && this.props.notification.content ?

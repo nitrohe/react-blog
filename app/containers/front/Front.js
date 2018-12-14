@@ -1,7 +1,7 @@
 import React,{Component,PropTypes} from 'react'
 import {connect} from 'react-redux'
-import {Detail} from '../detail'
-import {Home} from '../home'
+//import {Detail} from '../detail'
+//import {Home} from '../home'
 import style from './style.css'
 import {
     Switch,
@@ -14,13 +14,13 @@ import MenuBar from "../components/menuBar/MenuBar";
 import FootBar from "../components/footBar/FootBar";
 //import HomePage from "../homePage/HomePage";
 import BackTop from "../components/backTop/BackTop";
-import Column from "../column/Column";
+//import Column from "../column/Column";
 //import Interact from "../interact/Interact";
-import InteractPage from "../interact/InteractPage";
-import TimeLine from "../timeLine/TimeLine";
-import FriendLink from "../friendLink/FriendLink";
-import HomeAntd from "../homeAntd/index.jsx";
-import NotFound from "../../components/notFound/NotFound";
+//import InteractPage from "../interact/InteractPage";
+//import TimeLine from "../timeLine/TimeLine";
+//import FriendLink from "../friendLink/FriendLink";
+//import HomeAntd from "../homeAntd/index.jsx";
+//import NotFound from "../../components/notFound/NotFound";
 
 //import {Progress} from 'antd';
 import {bindActionCreators} from 'redux'
@@ -29,8 +29,69 @@ import {actions as FrontActinos} from '../../reducers/frontReducer'
 //import Login from "../home/components/login/Login";
 //import {Logined} from "../home/components/logined/Logined";
 import {actions as IndexActions} from '../../reducers/index'
+import {Icon} from 'antd';
+
+
+import Loadable from 'react-loadable';
+
 const {get_all_tags} = actions;
 const {get_article_list,set_progress_width} = FrontActinos;
+
+const Loading = ({ pastDelay, timedOut, error }) => {
+  if (pastDelay) {
+    return <div><Icon type="loading" /></div>;
+  } else if (timedOut) {
+    return <div>Taking a long time...</div>;
+  } else if (error) {
+    return <div>Error!</div>;
+  }
+  return null;
+};
+
+const HomeLoadable = Loadable({
+  loader: () => import('../homeAntd/index.jsx'),
+  loading: Loading,
+  timeout: 10000
+});
+
+const BlogLoadable = Loadable({
+  loader: () => import('../home/Home'),
+  loading: Loading,
+  timeout: 10000
+});
+const ArticlLoadable = Loadable({
+  loader: () => import('../detail/Detail'),
+  loading: Loading,
+  timeout: 10000
+});
+
+const ColumnLoadable = Loadable({
+  loader: () => import('../column/Column'),
+  loading: Loading,
+  timeout: 10000
+});
+const TimelineLoadable = Loadable({
+  loader: () => import('../timeLine/TimeLine'),
+  loading: Loading,
+  timeout: 10000
+});
+
+const InteractLoadable = Loadable({
+  loader: () => import('../interact/InteractPage'),
+  loading: Loading,
+  timeout: 10000
+});
+const FriendlinkLoadable = Loadable({
+  loader: () => import('../friendLink/FriendLink'),
+  loading: Loading,
+  timeout: 10000
+});
+const NotFoundLoadable = Loadable({
+  loader: () => import('../../components/notFound/NotFound'),
+  loading: Loading,
+  timeout: 10000
+});
+
 
 class Front extends Component{
     constructor(props){
@@ -101,16 +162,19 @@ class Front extends Component{
 
                     <Switch>
                         {/*<Route exact path={url} component={HomePage}/>*/}
-                        <Route exact path={url} component={HomeAntd}/>
-                        <Route path={`/Blog`} component={Home}/>
-                        <Route path={`/Timeline`} component={TimeLine}/>
-                        <Route path={`/FriendLink`} component={FriendLink}/>
-                        <Route path={`/Column`} component={Column}/>
-                        {/*<Route path={`/Interact`} component={Interact}/>*/}
-                        {<Route path={`/Interact`} component={InteractPage}/>}
-                        <Route path={`/detail/:id`} component={Detail}/>
-                        <Route path={`/:tag`} component={Home}/>
-                        <Route component={NotFound}/>
+                        <Route exact path={url} component={HomeLoadable}/>
+                        {/*<Route path={`/Blog`} component={Home}/>
+                        <Route path={`/Column`} component={Column}/>*/}
+                        <Route path={`/Blog`} component={BlogLoadable}/>
+                        <Route path={`/Column`} component={ColumnLoadable}/>
+
+                        <Route path={`/Timeline`} component={TimelineLoadable}/>
+                        <Route path={`/FriendLink`} component={FriendlinkLoadable}/>
+                        {/*<Route path={`/Interact`} component={InteractPage}/>*/}
+                        <Route path={`/Interact`} component={InteractLoadable}/>
+                        <Route path={`/detail/:id`} component={ArticlLoadable}/>
+
+                        <Route component={NotFoundLoadable}/>
                     </Switch>
 
                 </div>

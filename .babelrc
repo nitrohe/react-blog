@@ -1,6 +1,6 @@
 {
   "presets": ["es2015","react","stage-0"],
-  "plugins": ["react-hot-loader/babel",["import", { "libraryName": "antd", "style": true }],"transform-runtime","transform-class-properties"],
+  "plugins": ["react-hot-loader/babel","babel-plugin-syntax-dynamic-import","syntax-dynamic-import",["import", { "libraryName": "antd", "style": "css" }],"transform-runtime","transform-class-properties"],
   "env": {
     "production":{
       "presets":["react-optimize"]
