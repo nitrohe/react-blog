@@ -1,0 +1,23 @@
+.login{
+    background: white;
+}
+.loginForm{
+    position: fixed;
+	z-index: 2;
+	top: calc(50% - 150px);
+	left: calc(50% - 180px);
+	width: 360px;
+	height: 300px;
+    background: #ffffffb3;
+    padding:35px 25px;
+    border-radius: 15px;
+}
+.loginFormButton{
+    width: 100%;
+}
+.loginFormForgot{
+    float:right;
+}
+.loginFormRegister{
+    float:right;
+}

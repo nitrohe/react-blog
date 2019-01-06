@@ -1,0 +1,42 @@
+/* Page Loader */
+ .loadableLoading::before {
+	content: '';
+	position: fixed;
+	z-index: 10000;
+	top: 60;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--background-color);
+    filter:alpha(opacity=90);/*IE浏览器*/
+    opacity: 0.9;/*非IE浏览器*/
+}
+
+.loadableLoading::after {
+	content: '';
+	position: fixed;
+	z-index: 10000;
+	top: calc(50% - 40px);
+	left: calc(50% - 40px);
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	border: 10px solid var(--background-color-2);
+	border-left-color: var(--text-color);
+	animation: loaderAnim 0.8s linear infinite forwards;
+}
+.LoadingLabel{
+	content: '';
+	position: fixed;
+	z-index: 10000;
+	top: calc(50% + 60px);
+	left: calc(50% - 60px);
+    font-size: 14px;
+    color: '#808494';
+
+}
+@keyframes loaderAnim {
+	to {
+		transform: rotate(360deg);
+	}
+}

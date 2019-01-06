@@ -1,0 +1,34 @@
+.footBar{
+    background: #474443;
+    margin: 0 auto;
+    line-height: 23px;
+    position: relative;
+    /*color: #ddd;*/
+    /*position: absolute;*/
+	bottom: 0;
+	left: 0;
+	width: 100%;
+    text-align:center;
+    clear:both;
+}
+
+.footContent{
+    /*width: 550px;
+	margin: 20px ;*/
+	/*padding: 5px 0 3px;*/
+	padding: 10px;
+	font-size: 16px;
+    width:100%;
+	/*text-align: center;*/
+    margin: 0 auto;
+
+}
+.footContent a{
+    margin: 0 10px;
+    color: #F8F8FF;
+}
+.footContent p{
+    font-size: 13px;
+    opacity: 0.8;
+    color: #F8F8FF;
+}

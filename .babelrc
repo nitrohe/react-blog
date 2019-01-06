@@ -1,6 +1,6 @@
 {
   "presets": ["es2015","react","stage-0"],
-  "plugins": ["react-hot-loader/babel","babel-plugin-syntax-dynamic-import","syntax-dynamic-import",["import", { "libraryName": "antd", "style": "css" }],"transform-runtime","transform-class-properties"],
+  "plugins": ["react-hot-loader/babel","react-imported-component/babel",["import", { "libraryName": "antd", "style": "css" }],"transform-runtime","transform-class-properties",["import", { "libraryName": "redux-persist", "libraryDirectory": "es"}, "redux-persist"]],
   "env": {
     "production":{
       "presets":["react-optimize"]

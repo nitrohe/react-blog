@@ -6,7 +6,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
 
 const ROOT_PATH = pathLib.resolve(__dirname);
-const ENTRY_PATH = pathLib.resolve(ROOT_PATH, 'app');
+const ENTRY_PATH = pathLib.resolve(ROOT_PATH, 'src');
 const OUTPUT_PATH = pathLib.resolve(ROOT_PATH, 'build');
 console.log(pathLib.resolve(ENTRY_PATH, 'index.js'));
 
@@ -27,7 +27,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
             },

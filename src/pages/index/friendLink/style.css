@@ -1,0 +1,326 @@
+.clear{
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix:after, .clearfix:before{
+    clear: both;
+    content: '\0020';
+    display: block;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+.friendLink{
+    display: block;
+    width:100%;
+}
+.friendLinkBanner {
+    -moz-box-align: center;
+    -moz-box-direction: normal;
+    -moz-box-orient: vertical;
+    -moz-box-pack: center;
+    align-items: center;
+    /*background-color: #2a3440;*/
+    color: #fff;
+    display: flex;
+    flex-flow: column wrap;
+    /*font-size: 3rem;*/
+    /*height: 16.25rem;*/
+    justify-content: center;
+    /*padding: 4.375rem 0 1.25rem;
+    text-align: center;*/
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    height: 100px;
+    width:100%;
+
+}
+.friendLinkPre {
+    display:block;
+    /*min-width: 960px;*/
+    /* background: url(../index/images/skill.jpg) no-repeat center center;*/
+    background: url(./fl_bg_3.jpg) no-repeat center center;
+    /*background: url(../imgs/sdmenu/toptitle.gif) no-repeat center center;*/
+    /*padding: 50;*/
+    -webkit-background-size: cover;
+    background-size: cover;
+    color:#fff;
+    background-attachment: fixed;
+    /*background-color: #2a3440;*/
+    /*height: 220px;*/
+    min-height: 200px;
+    width:100%;
+    position: fixed;
+
+    font-family: "Georgia", serif;
+    font-style: italic;
+    /*right:10px;*/
+    /*top:10px;*/
+    /*margin-top: 60px;*/
+    /*margin-bottom: 20px;*/
+    /*margin-top: 60px; */
+    /*z-index: 1; */
+}
+
+.friendLinkPre:after{
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    background-color: #222;
+    opacity: 0.2;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+.friendLinkPre p{
+    width: 80%;
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+    height: 50px;
+}
+
+.friendLinkInfo {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+
+}
+
+
+.expertsListWrap {
+    clear: both;
+    min-height:450px;
+    /*margin-left:auto;
+    margin-right:auto;*/
+    background:#f0f0f0;
+    z-index:8;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /*align-items: center;
+    width: 100%;
+    padding-left: 130px;
+    padding-right: 130px;*/
+
+}
+.expertsListContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width:80%;
+
+}
+.expertsListContainer > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+
+}
+.expertsListWrap .expertsList {
+    /*background: #f8fafb none repeat scroll 0 0;*/
+    background: #F5F5F5 none repeat scroll 0 0;
+    border: 1px solid #e7ecef;
+    float: left;
+    /*height: 215px;*/
+    height: 150px;
+    margin-left: 5px;
+    margin-top: 40px;
+    padding-top: 35px;
+    position: relative;
+    /*width: 255px;*/
+    width: 234px;
+    display: flex;
+
+}
+.expertsListWrap .expertsList dt {
+    /*left: 88px;*/
+    left: 85px;
+    position: absolute;
+    top: -30px;
+}
+.expertsListWrap .expertsList dt .expertHead {
+    border: 1px solid #f0f3f5;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+
+.expertsListWrap .expertsList .expertsListTitle{
+    text-align: center;
+
+}
+
+
+
+.expertsListInfo {
+    /* display: block; */
+    height: 150px;
+    width: 232px;
+    color: #373d41;
+    font-size: 15px;
+
+}
+.expertsListInfo .img {
+    /* display: block; */
+    height: 232px;
+    width: 232px;
+}
+.expertsListInfo .i_w {
+    height: 100px;
+    overflow: hidden;
+    width: 232px;
+}
+.expertsListInfo .i_w .i {
+    height: 100px;
+    width: 232px;
+}
+.expertsListInfo .i_w .ii {
+    height: 100px;
+    width: 232px;
+}
+.expertsListInfo .i_w .c1 {
+    background: #F5F5F5 none repeat scroll 0 0;
+    height: 100px;
+    overflow: hidden;
+    width: 232px;
+}
+.expertsListInfo .i_w .c1 strong {
+    color: #333;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    height: 36px;
+    line-height: 36px;
+    overflow: hidden;
+    /*margin-top: 10px;*/
+    padding: 11px 30px 0 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}
+.expertsListInfo .i_w .c1 strong:hover {
+    color: #333;
+}
+.expertsListInfo .i_w .c1 span {
+    color: #999;
+    display: block;
+    font-size: 13px;
+    height: 26px;
+    line-height: 26px;
+    padding: 5px 10px;
+}
+.expertsListInfo .i_w .c1 em {
+    color: #ff3232;
+    display: block;
+    font-size: 12px;
+    height: 23px;
+    line-height: 23px;
+    padding: 0 14px;
+}
+.expertsListInfo .i_w .c2 {
+    background: #F5F5F5 none repeat scroll 0 0;
+    height: 150px;
+    overflow: hidden;
+    width: 232px;
+}
+.expertsListInfo .i_w .c2 ul {
+    /*padding: 20px 0 15px 14px;*/
+}
+.expertsListInfo .i_w .c2 ul li {
+    /* background: rgba(0, 0, 0, 0) url("../images/list_style1_icons.png") no-repeat scroll 0 0; */
+    /*color: #00aa88;*/
+    float: left;
+    font-size: 16px;
+    height: 32px;
+    line-height: 32px;
+    /*text-indent: 32px;*/
+    width: 232px;
+    margin-top: 50px;
+    padding-top: 15px;
+    text-align: center;
+}
+.expertsListInfo .i_w .c2 ul li.li2 {
+    background-position: -9px -44px;
+}
+.expertsListInfo .i_w .c2 ul li.li1 {
+    background-position: -9px -126px;
+}
+.expertsListInfo :hover {
+    color: #333;
+}
+.c2:hover {
+    color: #00aa88;
+}
+.expertsListShowLink {
+    /*margin-top: -150px;
+    transition: width 3s;
+    animation:animateEnter 1s infinite;*//*infinite循环*/
+    animation:animateEnter 1s ;
+    -moz-animation:animateEnter 1s ; /*Firefox*/
+    -webkit-animation:animateEnter 1s ; /*Safari and Chrome*/
+    animation-fill-mode: forwards;
+}
+.expertsListShowLink2 {
+    /*margin-top: 0px;
+    transition: width 3s;*/
+    animation:animateLeave 1s ;
+    -moz-animation:animateLeave 1s ; /*Firefox*/
+    -webkit-animation:animateLeave 1s ; /*Safari and Chrome*/
+}
+@keyframes animateEnter
+{
+    from {margin-top:0px;}
+    to {margin-top:-150px;}
+}
+@-moz-keyframes animateEnter /*Firefox*/
+{
+    from {margin-top:0px;}
+    to {margin-top:-150px;}
+}
+@-webkit-keyframes animateEnter /*Safari and Chrome*/
+{
+    from {margin-top:0px;}
+    to {margin-top:-150px;}
+}
+@keyframes animateLeave
+{
+    0% {margin-top:-150px;}
+    100% {margin-top:0px;}
+}
+@-moz-keyframes animateLeave /*Firefox*/
+{
+    0% {margin-top:-150px;}
+    100% {margin-top:0px;}
+}
+@-webkit-keyframes animateLeave /*Safari and Chrome*/
+{
+    0% {margin-top:-150px;}
+    100% {margin-top:0px;}
+}
+
+@media only screen and (max-width: 665px) {
+    .expertsListContainer {
+        width:100%;
+    }
+    .friendLinkPre p{
+        width: 90%;
+
+    }
+    .friendLinkInfo {
+        margin-top: 10px;
+    }
+}
