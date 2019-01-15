@@ -7,7 +7,7 @@ import {actionTypes as NewArticleTypes} from '../reducers/adminManagerNewArticle
 export function* getArticleList (pageNum) {
     yield put({type: IndexActionTypes.FETCH_START});
     try {
-        return yield call(get, `/getArticles?pageNum=${pageNum}&isPublish=false`);
+        return yield call(get, `/getAllArticles`);
     } catch (err) {
         yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
     } finally {
@@ -34,7 +34,32 @@ export function* getArticleListFlow () {
         }
     }
 }
+export function* getArticleDetailShow (id) {
+    yield put({type: IndexActionTypes.FETCH_START});
+    try {
+        //return yield call(get, `/admin/article/getArticleDetail?id=${id}`);
+        return yield call(get, `/getArticleDetail?id=${id}`);
 
+    } catch (err) {
+        yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
+    } finally {
+        yield put({type: IndexActionTypes.FETCH_END})
+    }
+}
+
+export function* getArticleDetailShowFlow () {
+    while (true){
+        let req = yield take(ArticleTypes.GET_ARTICLE_DETAIL_SHOW);
+        let res = yield call(getArticleDetailShow,req.id);
+        if(res){
+            if (res.code === 0) {
+                yield put({type:ArticleTypes.RESPONSE_GET_ARTICLE_DETAIL,data:res.data})
+            } else {
+                yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
+            }
+        }
+    }
+}
 export function* deleteArticle (id) {
     yield put({type: IndexActionTypes.FETCH_START});
     try {
@@ -67,10 +92,16 @@ export function* deleteArticleFlow () {
     }
 }
 
-export function* editArticle (id) {
+export function* saveArticle(data) {
     yield put({type: IndexActionTypes.FETCH_START});
     try {
-        return yield call(get, `/getArticleDetail?id=${id}`);
+        //let id = yield select(state=>state.admin.newArticle.id);
+        if(data.id){
+            return yield call(post, '/admin/article/updateArticle', data);
+        }else{
+            return yield call(post, '/admin/article/addArticle', data);
+        }
+
     } catch (err) {
         yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
     } finally {
@@ -78,26 +109,30 @@ export function* editArticle (id) {
     }
 }
 
-export function* editArticleFlow () {
-    while (true){
-        let req = yield take(ArticleTypes.ADMIN_EDIT_ARTICLE);
-        let res = yield call(editArticle,req.id);
-        if(res){
-            if (res.code === 0) {
-                let title = res.data.title;
-                let img = res.data.coverImg;
-                let abstract = res.data.abstract;
-                let content = res.data.content;
-                let tags = res.data.tags;
-                let id = res.data._id;
-                yield put({type:NewArticleTypes.SET_ARTICLE_ID,id});
-                yield put({type:NewArticleTypes.UPDATING_TAGS,tags});
-                yield put({type:NewArticleTypes.UPDATING_CONTENT,content});
-                yield put({type:NewArticleTypes.UPDATING_TITLE,title});
-                yield put({type:NewArticleTypes.UPDATING_IMG,img});
-                yield put({type:NewArticleTypes.UPDATING_ABSTRACT,abstract});
-            } else {
-                yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
+export function* saveArticleFlow() {
+    while (true) {
+        let request = yield take(ArticleTypes.SAVE_ARTICLE);
+        if (request.data.title === '') {
+            yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '请输入文章标题', msgType: 0});
+        } else if (request.data.content === "") {
+            yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '请输入文章内容', msgType: 0});
+        } else if (request.data.tags.length === 0) {
+            yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '请选择文章分类', msgType: 0});
+        }
+        if (request.data.title && request.data.content && request.data.tags.length > 0) {
+            let res = yield call(saveArticle, request.data);
+            if (res) {
+                if (res.code === 0) {
+                    yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 1});
+
+                } else if (res.message === '身份信息已过期，请重新登录') {
+                    yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
+                    setTimeout(function () {
+                        location.replace('/');
+                    }, 1000);
+                } else {
+                    yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
+                }
             }
         }
     }

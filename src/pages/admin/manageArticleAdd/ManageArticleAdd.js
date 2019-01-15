@@ -5,16 +5,18 @@ import {connect} from 'react-redux'
 import style from './style.css'
 import remark from 'remark'
 import reactRenderer from 'remark-react'
-import {Input, Select, Button, Modal} from 'antd';
-import {actions} from "@reducers/adminManagerNewArticle";
+import { Form, Input, Select, Cascader, Row, Col, Button, DatePicker, Modal, Radio  } from 'antd';
+import {actions} from "@reducers/adminManagerArticle";
 import {actions as tagActions} from "@reducers/adminManagerTags";
 import dateFormat from 'dateformat'
 
 const {get_all_tags} = tagActions;
-const {update_abstract,update_content, update_img, update_tags, update_title, save_article} = actions;
+const {get_article_detail, set_article_detail, save_article} = actions;
 const Option = Select.Option;
 
-class ManageArticleAdd extends Component {
+const { TextArea } = Input;
+
+class ManageArticleAddForm extends Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
@@ -24,60 +26,34 @@ class ManageArticleAdd extends Component {
         };
     }
 
-    //正文内容
-    onChanges(e) {
-        this.props.update_content(e.target.value);
-    }
-
-    //标题输入框
-    titleOnChange(e) {
-        this.props.update_title(e.target.value)
-    };
-    //标题输入框
-    abstractOnChange(e) {
-        this.props.update_abstract(e.target.value)
-    };
-    //图片输入框
-    imgOnChange(e) {
-        this.props.update_img(e.target.value)
-    };
-
-    //选择标签
-    selectTags(value) {
-        this.props.update_tags(value)
-    };
-
-    //预览
     preView() {
         this.setState({
             modalVisible: true
         })
     };
 
-    //发表
-    publishArticle() {
-        let articleData = {};
-        articleData.title = this.props.title;
-        articleData.coverImg = this.props.img;
-        articleData.abstract = this.props.abstract;
-        articleData.content = this.props.content;
-        articleData.tags = this.props.tags;
-        articleData.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
-        articleData.isPublish = true;
-        this.props.save_article(articleData);
-    };
 
-    //保存
-    saveArticle() {
-        let articleData = {};
-        articleData.title = this.props.title;
-        articleData.coverImg = this.props.img;
-        articleData.abstract = this.props.abstract;
-        articleData.content = this.props.content;
-        articleData.tags = this.props.tags;
-        articleData.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
-        articleData.isPublish = false;
-        this.props.save_article(articleData);
+    saveArticle = (e) => {
+        e.preventDefault();
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            console.log('values--',values);
+
+            const fieldsValue = {
+               ...values,
+               'id': '',
+               'lasttime': '',
+             };
+             if(typeof this.props.match.params.id != 'undefined') {
+                 fieldsValue.id = this.props.match.params.id;
+                 fieldsValue.lasttime = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
+                 fieldsValue.time = this.props.articleDetail.time;
+             } else {
+                fieldsValue.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
+             }
+
+             this.props.save_article(fieldsValue);
+             //this.props.history.push(`/admin.html/manageArticle`);
+        });
     };
 
     //handleOk
@@ -88,58 +64,154 @@ class ManageArticleAdd extends Component {
     };
 
     render() {
+        //let {title, coverImg, abstract, content, tags} = this.props.articleDetail;
+        const { getFieldDecorator } = this.props.form;
+        const { autoCompleteResult } = this.state;
+        const RadioGroup = Radio.Group;
+
+        const formItemLayout = {
+          labelCol: {
+            xs: { span: 24 },
+            sm: { span: 4 },
+          },
+          wrapperCol: {
+            xs: { span: 24 },
+            sm: { span: 8 },
+          },
+        };
+        const formItemAreaLayout = {
+          labelCol: {
+            xs: { span: 24 },
+            sm: { span: 4 },
+          },
+          wrapperCol: {
+            xs: { span: 24 },
+            sm: { span: 16 },
+          },
+        };
+        const tailFormItemLayout = {
+          wrapperCol: {
+            xs: {
+              span: 24,
+              offset: 0,
+            },
+            sm: {
+              span: 16,
+              offset: 10,
+            },
+          },
+        };
         return (
             <div>
-                
-                <div className={style.container}>
-                    <span className={style.subTitle}>标题</span>
-                    <Input
-                        className={style.titleInput}
-                        placeholder={'请输入文章标题'}
-                        type='text'
-                        value={this.props.title}
-                        onChange={this.titleOnChange.bind(this)}/>
-                    <span className={style.subTitle}>图片</span>
-                    <Input
-                        className={style.titleInput}
-                        placeholder={'请输入图片名称'}
-                        type='text'
-                        value={this.props.img}
-                        onChange={this.imgOnChange.bind(this)}/>
-                    <span className={style.subTitle}>摘要</span>
-                    <textarea
-                        className={style.abstractArea}
-                        value={this.props.abstract}
-                        onChange={this.abstractOnChange.bind(this)}/>
-                    <span className={style.subTitle}>正文</span>
-                    <textarea
-                        className={style.textArea}
-                        value={this.props.content}
-                        onChange={this.onChanges.bind(this)}/>
-                    <span className={style.subTitle}>分类</span>
-                    <Select
-                        mode="tags"
-                        className={style.titleInput}
-                        placeholder="请选择分类"
-                        onChange={this.selectTags.bind(this)}
-                        value={this.props.tags}
-                    >
-                        {
-                            this.props.tagsBase.map((item) => (
-                                <Option key={item}>{item}</Option>
-                            ))
-                        }
-                    </Select>
+              <Form onSubmit={this.saveArticle}>
+                <Form.Item
+                  {...formItemLayout}
+                  label="标题"
+                >
+                  {getFieldDecorator('title', {
+                    rules: [{
+                      required: true, message: '请输入文章标题!',
+                    }],
+                    initialValue: ''
 
-                    <div className={style.bottomContainer}>
-                        <Button type="primary" onClick={this.publishArticle.bind(this)}
-                                className={style.buttonStyle}>发布</Button>
-                        <Button type="primary" onClick={this.saveArticle.bind(this)}
-                                className={style.buttonStyle}>保存</Button>
-                        <Button type="primary" onClick={this.preView.bind(this)}
-                                className={style.buttonStyle}>预览</Button>
-                    </div>
-                </div>
+                  })(
+                    <Input />
+                  )}
+                </Form.Item>
+                <Form.Item
+                  {...formItemLayout}
+                  label="图片"
+                >
+                {getFieldDecorator('coverImg', {
+                  rules: [{
+                    required: true, message: '请输入图片地址!',
+                  }],
+                  initialValue: ''
+
+                })(
+                    <Input />
+                )}
+                </Form.Item>
+                <Form.Item
+                  {...formItemLayout}
+                  label="摘要"
+                >
+                {getFieldDecorator('abstract', {
+                  rules: [{
+                    required: true, message: '请输入文章摘要!',
+                  }],
+                  initialValue: ''
+                })(
+                    <TextArea rows={4} />
+                )}
+                </Form.Item>
+                <Form.Item
+                  {...formItemAreaLayout}
+                  label="文章内容 "
+                >
+                  {getFieldDecorator('content', {
+                    rules: [{
+                      required: true, message: '请文章内容!',
+                    }],
+                  })(
+                    <TextArea rows={16} />
+                  )}
+                </Form.Item>
+                <Form.Item
+                  {...formItemLayout}
+                  label="作者"
+                >
+                  {getFieldDecorator('author', {
+                    rules: [{
+                      required: true, message: '请输入作者!',
+                    }],
+                    initialValue: 'nitrohe'
+
+                  })(
+                    <Input />
+                  )}
+                </Form.Item>
+                <Form.Item
+                  {...formItemLayout}
+                  label="分类 "
+                >
+                  {getFieldDecorator('tags', {
+                    rules: [{
+                      required: true, message: '请选择文章分类!',
+                    }],
+                  })(
+                      <Select
+                          mode="tags"
+                          placeholder="请选择分类"
+                      >
+                      </Select>
+                  )}
+                </Form.Item>
+
+                <Form.Item
+                  {...formItemLayout}
+                  label="发表"
+                >
+                  {getFieldDecorator('isPublish', {
+                    rules: [{
+                      required: true, message: '请选择是否发表!',
+                    }],
+                  })(
+                      <RadioGroup>
+                        <Radio value={true}>是</Radio>
+                        <Radio value={false}>否</Radio>
+                      </RadioGroup>
+                  )}
+
+                </Form.Item>
+
+                <Form.Item {...tailFormItemLayout}>
+                  <Button type="primary" htmlType="submit" className={style.buttonStyle}>确定</Button>
+                  <Button type="primary" onClick={this.preView.bind(this)}
+                          className={style.buttonStyle}>预览</Button>
+                </Form.Item>
+              </Form>
+
                 <Modal
                     visible={this.state.modalVisible}
                     title="文章预览"
@@ -150,7 +222,7 @@ class ManageArticleAdd extends Component {
                 >
                     <div className={style.modalContainer}>
                         <div id='preview' className={style.testCode}>
-                            {remark().use(reactRenderer).processSync(this.props.content).contents}
+                            {remark().use(reactRenderer).processSync(this.props.articleDetail.content).contents}
                         </div>
                     </div>
                 </Modal>
@@ -160,57 +232,52 @@ class ManageArticleAdd extends Component {
     }
 
     componentDidMount() {
-        this.props.get_all_tags();
+        //this.props.get_all_tags();
+        if(typeof this.props.match.params.id != 'undefined'){
+            this.props.get_article_detail(this.props.match.params.id);
+        } else {
+            this.props.set_article_detail({});
+        }
     }
 }
 
-ManageArticleAdd.propsTypes = {
-    title: PropTypes.string,
-    img: PropTypes.string,
-    abstract: PropTypes.string,
-    content: PropTypes.string,
-    tags: PropTypes.array,
-    tagsBase: PropTypes.array
+ManageArticleAddForm.propsTypes = {
+    articleDetail: PropTypes.object
 };
 
-ManageArticleAdd.defaultProps = {
-    title: '',
-    img: '',
-    abstract: '',
-    content: '',
-    tags: [],
-    tagsBase: []
+ManageArticleAddForm.defaultProps = {
+    articleDetail:{}
 };
 
 function mapStateToProps(state) {
-    const {title, img, abstract, content, tags} = state.admin.newArticle;
-    let tempArr = state.admin.tags;
-    for (let i = 0; i < tempArr.length; i++) {
-        if (tempArr[i] === '首页') {
-            tempArr.splice(i, 1);
-        }
-    }
     return {
-        title,
-        img,
-        abstract,
-        content,
-        tags,
-        tagsBase: tempArr
+        articleDetail:state.admin.articles.articleDetail
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        update_tags: bindActionCreators(update_tags, dispatch),
-        update_title: bindActionCreators(update_title, dispatch),
-        update_img: bindActionCreators(update_img, dispatch),
-        update_abstract: bindActionCreators(update_abstract, dispatch),
-        update_content: bindActionCreators(update_content, dispatch),
-        get_all_tags: bindActionCreators(get_all_tags, dispatch),
+        get_article_detail: bindActionCreators(get_article_detail, dispatch),
+        set_article_detail: bindActionCreators(set_article_detail, dispatch),
         save_article: bindActionCreators(save_article, dispatch)
     }
 }
+const ManageArticleAdd = Form.create({
+
+    mapPropsToFields(props) {
+            return {
+                title: Form.createFormField({...props.articleDetail, value: props.articleDetail.title}),
+                coverImg: Form.createFormField({...props.articleDetail, value: props.articleDetail.coverImg}),
+                abstract: Form.createFormField({...props.articleDetail, value: props.articleDetail.abstract}),
+                content: Form.createFormField({...props.articleDetail, value: props.articleDetail.content}),
+                isPublish: Form.createFormField({...props.articleDetail, value: props.articleDetail.isPublish}),
+                author: Form.createFormField({...props.articleDetail, value: props.articleDetail.author}),
+                tags: Form.createFormField({...props.articleDetail, value: props.articleDetail.tags})
+            };
+    }
+
+})(ManageArticleAddForm);
+
 
 export default connect(
     mapStateToProps,

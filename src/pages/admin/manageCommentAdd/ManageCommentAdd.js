@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import style from './style.css'
 import remark from 'remark'
 import reactRenderer from 'remark-react'
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, DatePicker  , Radio} from 'antd';
+import { Form, Input, Cascader, Select, Row, Col, Button, DatePicker, Radio} from 'antd';
 import moment from 'moment';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
 
@@ -82,7 +82,7 @@ class manageCommentAddForm extends Component {
         const config = {
          rules: [{ type: 'object', required: true, message: '请选择时间!' }],
         };
-
+        const RadioGroup = Radio.Group;
 
         return (
             <div>
@@ -128,10 +128,10 @@ class manageCommentAddForm extends Component {
                   label="类型"
                 >
                   {getFieldDecorator('type')(
-                    <Radio.Group>
+                    <RadioGroup>
                       <Radio value="1">留言</Radio>
                       <Radio value="2">文章</Radio>
-                    </Radio.Group>
+                    </RadioGroup>
                   )}
                 </Form.Item>
                 <Form.Item

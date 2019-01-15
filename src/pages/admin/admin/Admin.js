@@ -16,7 +16,7 @@ import AdminHome from "../adminHome/AdminHome"
 import ManageArticleAdd from "../manageArticleAdd/ManageArticleAdd";
 import ManageTimeline from "../manageTimeline/ManageTimeline";
 import ManageUser from "../manageUser/ManageUser";
-import ManageArticle from "../manageArticle/ManageArticle";
+import ManageBlog from "../manageBlog/ManageBlog";
 import ManageComment from "../manageComment/ManageComment";
 import ManageFriendlink from "../manageFriendlink/ManageFriendlink";
 
@@ -88,10 +88,10 @@ class Admin extends Component {
                                     <Route exact path={`${url}`} component={AdminHome}/>
                                     <Route path={`${url}/manageTimeline`} component={ManageTimeline}/>
                                     <Route path={`${url}/manageUser`} component={ManageUser}/>
-                                    <Route path={`${url}/manageArticle`} component={ManageArticle}/>
+                                    <Route path={`${url}/manageBlog`} component={ManageBlog}/>
                                     <Route path={`${url}/manageComment`} component={ManageComment}/>
                                     <Route path={`${url}/manageFriendlink`} component={ManageFriendlink}/>
-                                    <Route path={`${url}/manageArticleAdd`} component={ManageArticleAdd}/>
+                                    <Route path={`${url}/manageArticleAdd/:id?`} component={ManageArticleAdd}/>
                                     <Route path={`${url}/manageTimelineAdd/:id?`} component={ManageTimelineAdd}/>
                                     <Route path={`${url}/manageFriendlinkAdd/:id?`} component={ManageFriendlinkAdd}/>
                                     <Route path={`${url}/manageCommentAdd/:id?`} component={ManageCommentAdd}/>

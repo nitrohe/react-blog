@@ -7,7 +7,7 @@ const menus = [
     {url: '/', name: '首页', iconType: 'home'},
     /*{url: '/newArticle', name: '写文章', iconType: 'edit'},*/
     {url: '/manageUser', name: '用户管理', iconType: 'usergroup-delete'},
-    {url: '/manageArticle', name: '文章管理', iconType: 'file-markdown'},
+    {url: '/manageBlog', name: '文章管理', iconType: 'file-markdown'},
     {url: '/manageComment', name: '评论管理', iconType: 'message'},
     {url: '/manageFriendlink', name: '友链管理', iconType: 'share-alt'},
     {url: '/manageTimeline', name: '时间线管理', iconType: 'schedule'},
@@ -32,7 +32,7 @@ export default class AdminMenu extends Component {
                 </div>
                 <div className={style.menuItem}>
                     <Menu
-                        selectedKeys={[this.props.url]}
+                        
                         mode="inline"
                         defaultSelectedKeys={['/']}
                         onClick={({key}) => {

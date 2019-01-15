@@ -2,8 +2,8 @@ import {fork} from 'redux-saga/effects'
 import {loginFlow, registerFlow, user_auth, logout} from './homeSaga'
 import {get_all_users_flow} from './adminManagerUsersSaga'
 import {getAllTagsFlow, addTagFlow, delTagFlow} from './adminManagerTagsSaga'
-import {saveArticleFlow} from './adminManagerNewArticleSaga'
-import {getArticleListFlow,deleteArticleFlow,editArticleFlow} from './adminManagerArticleSaga'
+
+import {getArticleListFlow,getArticleDetailShowFlow,deleteArticleFlow,saveArticleFlow} from './adminManagerArticleSaga'
 import {getTimelineListFlow,getTimelineDetailFlow,saveTimelineFlow,deleteTimelineFlow} from './adminManagerTimelineSaga'
 import {getFriendlinkListFlow,getFriendlinkDetailFlow,saveFriendlinkFlow,deleteFriendlinkFlow} from './adminManagerFriendlinkSaga'
 import {getCommentsListFlow,getCommentsDetailFlow,saveCommentsFlow,deleteCommentsFlow} from './adminManagerCommentsSaga'
@@ -23,7 +23,7 @@ export default function* rootSaga() {
     yield fork(deleteArticleFlow);
     yield fork(getArticlesListFlow);
     yield fork(getArticleDetailFlow);
-    yield fork(editArticleFlow);
+    yield fork(getArticleDetailShowFlow);
     yield fork(getCommentListFlow);
     yield fork(addCommentFlow);
     yield fork(getTimeLineListFlow);

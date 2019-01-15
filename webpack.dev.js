@@ -8,7 +8,7 @@ const config = require('./config/config');
 
 const ROOT_PATH = pathLib.resolve(__dirname);
 const ENTRY_PATH = pathLib.resolve(ROOT_PATH, 'src');
-const ENTRY_PATH2 = pathLib.resolve(ROOT_PATH, 'src/pages');
+const ENTRY_PATH_PAGES = pathLib.resolve(ROOT_PATH, 'src/pages');
 
 const OUTPUT_PATH = pathLib.resolve(ROOT_PATH, 'build');
 
@@ -26,11 +26,11 @@ module.exports = {
         ],*/
         index: [
             'babel-polyfill',
-            pathLib.resolve(ENTRY_PATH2, './index/index.js')
+            pathLib.resolve(ENTRY_PATH_PAGES, './index/index.js')
         ],
         admin: [
             'babel-polyfill',
-            pathLib.resolve(ENTRY_PATH2, './admin/index.js')
+            pathLib.resolve(ENTRY_PATH_PAGES, './admin/index.js')
         ],
         vendor: ['react', 'react-dom', 'react-router-dom', 'react-hot-loader/patch', `webpack-hot-middleware/client?path=http://${config.host}:${config.port}/__webpack_hmr`,]
     },
