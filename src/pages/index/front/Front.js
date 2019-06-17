@@ -20,7 +20,7 @@ import BackTop from "../components/backTop/BackTop";
 //import {Detail} from '../detail'
 
 import {bindActionCreators} from 'redux'
-import {actions} from '@reducers/adminManagerTags'
+import {actions} from '@reducers/tagsReducer'
 import {actions as FrontActinos} from '@reducers/frontReducer'
 
 import {actions as IndexActions} from '@reducers/index'

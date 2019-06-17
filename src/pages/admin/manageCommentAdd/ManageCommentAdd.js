@@ -9,7 +9,7 @@ import { Form, Input, Cascader, Select, Row, Col, Button, DatePicker, Radio} fro
 import moment from 'moment';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
 
-import {actions} from '@reducers/adminManagerComment'
+import {actions} from '@reducers/commentReducer'
 const {get_comment_detail, set_comment_detail, save_comment} = actions;
 
 const { TextArea } = Input;

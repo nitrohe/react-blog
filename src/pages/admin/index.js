@@ -1,10 +1,10 @@
 import React from 'react'
-import AdminApp from './admin.js'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 import {AppContainer} from 'react-hot-loader'
 import configureStore from '../../configureStore'
 import { PersistGate } from 'redux-persist/integration/react'
+import AdminApp from './admin.js'
 
 let div = document.createElement('div');
 div.setAttribute('id', 'admin');

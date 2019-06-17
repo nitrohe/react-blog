@@ -3,7 +3,7 @@ import React,{Component,PropTypes} from 'react'
 import {Table, Divider, Tooltip, Button } from 'antd';
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {actions} from '@reducers/adminManagerComment'
+import {actions} from '@reducers/commentReducer'
 const {get_comment_list,delete_comment} = actions;
 
 class ManageComment extends Component{

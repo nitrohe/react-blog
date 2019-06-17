@@ -9,7 +9,7 @@ import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Butto
 import moment from 'moment';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
 
-import {actions} from '@reducers/adminManagerTimeline'
+import {actions} from '@reducers/timelineReducer'
 const {get_timeline_detail, set_timeline_detail, save_timeline} = actions;
 
 const { TextArea } = Input;

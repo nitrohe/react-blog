@@ -6,7 +6,7 @@ import {
     Switch,
     Redirect
 } from 'react-router-dom'
-import './admin.css'
+//import './admin.css'
 import style from './admin.css'
 //import {Detail} from './detail'
 //import {Home} from './home'
@@ -116,7 +116,7 @@ class AdminIndex extends Component {
                     <Switch>
                         <Route path='/404' component={NotFound}/>
                         <Route path={`/admin.html/login`} component={Login}/>
-                        <Route path={`/admin.html/register`} component={Register}/>
+                        {/*<Route path={`/admin.html/register`} component={Register}/>*/}
                         <Route component={Admin}/>
                     </Switch>
                     {/*isFetching && <Loading/>*//*modify by zyf*/}

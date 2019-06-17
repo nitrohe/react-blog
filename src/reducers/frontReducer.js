@@ -10,7 +10,8 @@ const initialState = {
     progressWidth: '',
     friendLinkList: [],
     timeLineList: [],
-    columnList: []
+    columnList: [],
+    websiteInfo: {}
 };
 export const actionTypes = {
     GET_ARTICLE_LIST: "GET_ARTICLE_LIST",
@@ -28,7 +29,9 @@ export const actionTypes = {
     GET_TIME_LINE_LIST: "GET_TIME_LINE_LIST",
     RESPONSE_TIME_LINE_LIST: "RESPONSE_TIME_LINE_LIST",
     GET_COLUMN_LIST: "GET_COLUMN_LIST",
-    RESPONSE_COLUMN_LIST: "RESPONSE_COLUMN_LIST"
+    RESPONSE_COLUMN_LIST: "RESPONSE_COLUMN_LIST",
+    GET_WEBSITE_INFO: "GET_WEBSITE_INFO",
+    RESPONSE_WEBSITE_INFO: "RESPONSE_WEBSITE_INFO"
 };
 
 export const actions = {
@@ -92,6 +95,11 @@ export const actions = {
             site
         }
     },
+    get_website_info: function () {
+        return {
+            type: actionTypes.GET_WEBSITE_INFO
+        }
+    },
 };
 
 export function reducer(state = initialState, action) {
@@ -129,9 +137,13 @@ export function reducer(state = initialState, action) {
                 ...state, timeLineList: [...action.data.list]
             };
         case actionTypes.RESPONSE_COLUMN_LIST:
-                return {
-                    ...state, columnList: [...action.data.list]
-                };
+            return {
+                ...state, columnList: [...action.data.list]
+            };
+        case actionTypes.RESPONSE_WEBSITE_INFO:
+            return {
+                ...state, websiteInfo: action.data
+            };
         default:
             return state;
     }

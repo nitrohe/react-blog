@@ -17,7 +17,12 @@ import { Anchor, Icon } from 'antd';
 import style from './style.css'
 import DocumentTitle from 'react-document-title';
 
-import InteractPage from "../interact/InteractPage";
+import importedComponent, {ComponentLoader}  from 'react-imported-component';
+import Loadable from "@components/loadable/Loadable";
+const InteractPageLoadable = importedComponent( () => import('../interact/InteractPage'), {
+  LoadingComponent: Loadable,
+});
+//import InteractPage from "../interact/InteractPage";
 import RemarkMd from './RemarkMd'
 
 class Detail extends Component{
@@ -117,7 +122,7 @@ class Detail extends Component{
                 </div>
 
                 <div className={style.articleComment}>
-                    <InteractPage width={commentWidth} type={2} articleid={this.props.location.state.id} cmTitle={"发表评论"}/>
+                    <InteractPageLoadable width={commentWidth} type={2} articleid={this.props.location.state.id} cmTitle={"发表评论"}/>
                 </div>
 
 

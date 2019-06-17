@@ -189,3 +189,28 @@ export function* getColumnListFlow () {
         }
     }
 }
+
+export function* getWebsiteInfo () {
+    yield put({type: IndexActionTypes.FETCH_START});
+    try {
+        return yield call(get, `/getWebsiteInfo`);
+    } catch (err) {
+        yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
+    } finally {
+        yield put({type: IndexActionTypes.FETCH_END})
+    }
+}
+
+export function* getWebsiteInfoFlow () {
+    while (true){
+        let req = yield take(FrontActionTypes.GET_WEBSITE_INFO);
+        let res = yield call(getWebsiteInfo);
+        if(res){
+            if(res.code === 0){
+                yield put({type: FrontActionTypes.RESPONSE_WEBSITE_INFO,data:res.data});
+            }else{
+                yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
+            }
+        }
+    }
+}

@@ -8,9 +8,9 @@ export default class ArticleBoxBlock extends Component{
 
     render(){
         let _this = this;
+        let articleData = this.props.data.length>5?this.props.data.slice(0,5):this.props.data;
 
-
-        let articleList = this.props.data.map((item,index)=>(
+        let articleList = articleData.map((item,index)=>(
             <li className={`${style.moTextOverflow} ${style.listGroupItem}`} key={index} onClick={()=>{props.history.push(`/detail/${item._id}`, {id:item._id});props.getArticleDetail(item._id)}}>
                 <a className={style.animate}>{item.title}</a>
             </li>

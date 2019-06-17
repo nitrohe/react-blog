@@ -1,7 +1,7 @@
 import {put, take, call, select} from 'redux-saga/effects'
 import {get, post} from '../fetch/fetch'
 import {actionsTypes as IndexActionTypes} from '../reducers'
-import {actionTypes as ManagerTagsTypes} from '../reducers/adminManagerTags'
+import {actionTypes as ManagerTagsTypes} from '../reducers/tagsReducer'
 
 export function* getAllTags() {
     yield put({type: IndexActionTypes.FETCH_START});

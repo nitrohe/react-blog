@@ -7,7 +7,7 @@ import remark from 'remark'
 import reactRenderer from 'remark-react'
 import {Table, Divider, Tooltip, Button } from 'antd';
 
-import {actions} from '@reducers/adminManagerFriendlink'
+import {actions} from '@reducers/friendlinkReducer'
 const {get_friendlink_list,delete_friendlink} = actions;
 
 class ManageFriendlink extends Component {

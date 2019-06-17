@@ -6,8 +6,8 @@ import style from './style.css'
 import remark from 'remark'
 import reactRenderer from 'remark-react'
 import { Form, Input, Select, Cascader, Row, Col, Button, DatePicker, Modal, Radio  } from 'antd';
-import {actions} from "@reducers/adminManagerArticle";
-import {actions as tagActions} from "@reducers/adminManagerTags";
+import {actions} from "@reducers/articleReducer";
+import {actions as tagActions} from "@reducers/tagsReducer";
 import dateFormat from 'dateformat'
 
 const {get_all_tags} = tagActions;
@@ -50,6 +50,7 @@ class ManageArticleAddForm extends Component {
              } else {
                 fieldsValue.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
              }
+             fieldsValue.coverImg = typeof fieldsValue.coverImg=="undefined"?'':fieldsValue.coverImg;
 
              this.props.save_article(fieldsValue);
              //this.props.history.push(`/admin.html/manageArticle`);
@@ -123,9 +124,7 @@ class ManageArticleAddForm extends Component {
                   label="图片"
                 >
                 {getFieldDecorator('coverImg', {
-                  rules: [{
-                    required: true, message: '请输入图片地址!',
-                  }],
+
                   initialValue: ''
 
                 })(

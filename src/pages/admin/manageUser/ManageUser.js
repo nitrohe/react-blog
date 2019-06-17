@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {actions} from '@reducers/adminManagerUser'
+import {actions} from '@reducers/userReducer'
 import {Table, Pagination} from 'antd';
 import style from './style.css'
 

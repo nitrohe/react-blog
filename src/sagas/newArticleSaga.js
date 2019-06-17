@@ -1,7 +1,7 @@
 import {take, call, put,select} from 'redux-saga/effects'
 import {get, post} from '../fetch/fetch'
 import {actionsTypes as IndexActionTypes} from '../reducers'
-import {actionTypes as NewArticleActionTypes} from '../reducers/adminManagerNewArticle'
+import {actionTypes as NewArticleActionTypes} from '../reducers/newArticleReducer'
 
 export function* saveArticle(data) {
     yield put({type: IndexActionTypes.FETCH_START});

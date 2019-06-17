@@ -105,7 +105,7 @@ class InteractPage extends Component{
 
                         <div className={style.footer}>
                             <div className={style.footerTip}>
-                                <span>表情，:关键词</span>
+                                <span>:表情</span>
                             </div>
                             <div className={style.cdSeeAll}>
                                 <a className={style.btnF} href="javascript:void(0);" onClick={this.handleSubmit.bind(this)} >留言</a>

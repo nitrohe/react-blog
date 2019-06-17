@@ -1,8 +1,8 @@
 import {take,call,put,select} from 'redux-saga/effects'
 import {get, post} from '../fetch/fetch'
 import {actionsTypes as IndexActionTypes} from '../reducers'
-import {actionTypes as ArticleTypes} from '../reducers/adminManagerArticle'
-import {actionTypes as NewArticleTypes} from '../reducers/adminManagerNewArticle'
+import {actionTypes as ArticleTypes} from '../reducers/articleReducer'
+import {actionTypes as NewArticleTypes} from '../reducers/newArticleReducer'
 
 export function* getArticleList (pageNum) {
     yield put({type: IndexActionTypes.FETCH_START});

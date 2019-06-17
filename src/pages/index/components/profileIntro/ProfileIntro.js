@@ -101,6 +101,11 @@ export default class ProfileIntro extends Component{
         let _this = this;
         let visible = this.state.loginMenuShow;
 
+        let articleTotal = this.props.websiteInfo.articleTotal;
+        let commentTotal = this.props.websiteInfo.commentTotal;
+        let visitTotal = this.props.websiteInfo.visitTotal;
+
+
         const svgIcon = svgData.map((item,index) => (
             <Tooltip key={index} placement="bottom" title={item.tooltip}>
                 <a key={index} onClick={this.onHandleClickSvg.bind(this,item.name)}>{item.svg}</a>
@@ -122,6 +127,11 @@ export default class ProfileIntro extends Component{
 
                         </div>*/}
 
+                        <div className={style.profileIntroMotto}>
+                            {/*<span>前期追深度，否则会华而不实，后期追广度，否则会坐井观天；</span>*/}
+                            <span>如果两次都还没成功，那就叫2.0版吧</span>
+                        </div>
+
                         <div className={style.profileIntroContact}>
                             {/*<a><img src='/svg/cat.svg' alt="icon" /></a>
                             <a><img src='/svg/outlook.svg' alt="icon" /></a>*/}
@@ -132,15 +142,15 @@ export default class ProfileIntro extends Component{
                         <div className={style.profileIntroBlogInfo}>
                             <div >
                                 <span>原创</span>
-                                <span>31</span>
+                                <span>{articleTotal}</span>
                             </div>
                             <div >
                                 <span>评论</span>
-                                <span>21</span>
+                                <span>{commentTotal}</span>
                             </div>
                             <div >
                                 <span>访问</span>
-                                <span>100</span>
+                                <span>{visitTotal}</span>
                             </div>
                         </div>
 

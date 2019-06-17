@@ -7,7 +7,7 @@ import remark from 'remark'
 import reactRenderer from 'remark-react'
 import {Table, Divider, Tooltip, Button } from 'antd';
 
-import {actions} from '@reducers/adminManagerTimeline'
+import {actions} from '@reducers/timelineReducer'
 const {get_timeline_list,delete_timeline} = actions;
 
 class ManageTimeline extends Component {

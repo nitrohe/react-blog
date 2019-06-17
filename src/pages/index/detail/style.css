@@ -87,7 +87,7 @@
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
 }
-.content h1, .content h2, .content h3 {
+.content h1, .content h2, .content h3, .content h4 {
     margin: 1.5em 0 0;
     font-family: inherit;
     font-weight: 500;
@@ -105,13 +105,17 @@
     font-size: 18px;
 
 }
+.content h5 {
+    font-size: 16px;
+
+}
 
 .content h4, .content h5, .content p, .content ul, .content ol, .content pre, .content blockquote, .content table {
     margin: 1.5em 0;
 }
 
 .content ul, .content ol {
-    margin-left: 3em;
+    margin-left: 1em;
     padding-left: 0;
     list-style-type: decimal;
 }

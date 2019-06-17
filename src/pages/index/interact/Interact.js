@@ -67,7 +67,7 @@ class Interact extends Component{
                      />
                     <div className={style.footer}>
                         <div className={style.footerTip}>
-                            <span>表情，:关键词</span>
+                            <span>:表情</span>
                         </div>
                         <div className={style.cdSeeAll}>
                             <a className={style.btnF} href="javascript:void(0);" onClick={this.handleSubmit.bind(this)} >留&nbsp;&nbsp;言</a>

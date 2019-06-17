@@ -79,7 +79,7 @@
     flex-direction: row ;
     justify-content:center;
     height: 60px;
-    border-bottom:1px solid #e3e3e3;
+    /*border-bottom:1px solid #e3e3e3;*/
 }
 .profileIntroBlogInfo div{
     display: flex;
@@ -128,4 +128,13 @@
     display: flex;
     flex-direction: column ;
     justify-content:center;
+}
+
+.profileIntroMotto{
+    display: flex;
+    flex-direction: row ;
+    height: 45px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    border-bottom:1px solid #e3e3e3;
 }

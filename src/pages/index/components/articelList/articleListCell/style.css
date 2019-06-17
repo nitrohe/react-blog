@@ -38,7 +38,7 @@
 .bottomContainer>div{
     display: flex;
     flex-direction: row;
-    border-top: dashed thin #ddd;
+    border-top: solid thin #ddd;
     padding-top: 5px;
     justify-content: space-between;
     align-items: center;

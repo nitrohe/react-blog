@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux'
-import {users} from './adminManagerUser'
-import {reducer as tags} from './adminManagerTags'
-import {reducer as newArticle} from "./adminManagerNewArticle";
-import {articles} from './adminManagerArticle'
-import {reducer as timeline} from './adminManagerTimeline'
-import {reducer as friendlink} from './adminManagerFriendlink'
-import {reducer as comment} from './adminManagerComment'
+import {users} from './userReducer'
+import {reducer as tags} from './tagsReducer'
+import {reducer as newArticle} from "./newArticleReducer";
+import {articles} from './articleReducer'
+import {reducer as timeline} from './timelineReducer'
+import {reducer as friendlink} from './friendlinkReducer'
+import {reducer as comment} from './commentReducer'
 
 export const actionTypes = {
     ADMIN_URI_LOCATION:"ADMIN_URI_LOCATION"

@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import style from './style.css'
 import {Table, Divider, Tooltip, Button } from 'antd';
-import {actions} from '@reducers/adminManagerArticle'
+import {actions} from '@reducers/articleReducer'
 import {actions as FrontActions} from '@reducers/frontReducer'
 import Admin from "../admin/Admin";
 const {get_article_list,delete_article,edit_article, get_article_detail} = actions;

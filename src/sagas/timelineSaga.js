@@ -1,12 +1,12 @@
 import {take,call,put,select} from 'redux-saga/effects'
 import {get, post} from '../fetch/fetch'
 import {actionsTypes as IndexActionTypes} from '../reducers'
-import {actionTypes as CommentTypes} from '../reducers/adminManagerComment'
+import {actionTypes as TimelineTypes} from '../reducers/timelineReducer'
 
-export function* getCommentsList () {
+export function* getTimelineList () {
     yield put({type: IndexActionTypes.FETCH_START});
     try {
-        return yield call(get, `/getComments`);
+        return yield call(get, `/getTimeLine`);
     } catch (err) {
         yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
     } finally {
@@ -14,13 +14,13 @@ export function* getCommentsList () {
     }
 }
 
-export function* getCommentsListFlow () {
+export function* getTimelineListFlow () {
     while (true){
-        let req = yield take(CommentTypes.GET_COMMENTS_LIST);
-        let res = yield call(getCommentsList);
+        let req = yield take(TimelineTypes.GET_TIMELINE_LIST);
+        let res = yield call(getTimelineList);
         if(res){
             if(res.code === 0){
-                yield put({type: CommentTypes.RESPONSE_GET_COMMENT_LIST,data:res.data});
+                yield put({type: TimelineTypes.RESPONSE_GET_TIMELINE_LIST,data:res.data});
             }else{
                 yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
             }
@@ -28,10 +28,10 @@ export function* getCommentsListFlow () {
     }
 }
 
-export function* deleteComments (id) {
+export function* deleteTimeline (id) {
     yield put({type: IndexActionTypes.FETCH_START});
     try {
-        return yield call(get, `/admin/Comments/delComments?id=${id}`);
+        return yield call(get, `/admin/Timeline/delTimeline?id=${id}`);
     } catch (err) {
         yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
     } finally {
@@ -39,15 +39,15 @@ export function* deleteComments (id) {
     }
 }
 
-export function* deleteCommentsFlow () {
+export function* deleteTimelineFlow () {
     while(true){
-        let req = yield take(CommentTypes.DELETE_COMMENT);
+        let req = yield take(TimelineTypes.DELETE_TIMELINE);
         //const pageNum = yield select(state=>state.admin.articles.pageNum);
-        let res = yield call(deleteComments,req.id);
+        let res = yield call(deleteTimeline,req.id);
         if(res){
             if (res.code === 0) {
                 yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '删除成功!', msgType: 1});
-                //yield put({type:CommentTypes.GET_COMMENT_LIST,pageNum})
+                //yield put({type:TimelineTypes.GET_TIMELINE_LIST,pageNum})
             } else if (res.message === '身份信息已过期，请重新登录') {
                 yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
                 setTimeout(function () {
@@ -60,10 +60,10 @@ export function* deleteCommentsFlow () {
     }
 }
 
-export function* getCommentsDetail (id) {
+export function* getTimelineDetail (id) {
     yield put({type: IndexActionTypes.FETCH_START});
     try {
-        return yield call(get, `/admin/Comments/getCommentsDetail?id=${id}`);
+        return yield call(get, `/admin/Timeline/getTimelineDetail?id=${id}`);
     } catch (err) {
         yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
     } finally {
@@ -71,13 +71,13 @@ export function* getCommentsDetail (id) {
     }
 }
 
-export function* getCommentsDetailFlow () {
+export function* getTimelineDetailFlow () {
     while (true){
-        let req = yield take(CommentTypes.GET_COMMENT_DETAIL);
-        let res = yield call(getCommentsDetail,req.id);
+        let req = yield take(TimelineTypes.GET_TIMELINE_DETAIL);
+        let res = yield call(getTimelineDetail,req.id);
         if(res){
             if (res.code === 0) {
-                yield put({type:CommentTypes.RESPONSE_GET_COMMENT_DETAIL,data:res.data})
+                yield put({type:TimelineTypes.RESPONSE_GET_TIMELINE_DETAIL,data:res.data})
             } else {
                 yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
             }
@@ -85,14 +85,14 @@ export function* getCommentsDetailFlow () {
     }
 }
 
-export function* saveComments(data) {
+export function* saveTimeline(data) {
     yield put({type: IndexActionTypes.FETCH_START});
     try {
         //let id = yield select(state=>state.admin.newArticle.id);
         if(data.id){
-            return yield call(post, '/admin/Comments/updateComments', data);
+            return yield call(post, '/admin/Timeline/updateTimeline', data);
         }else{
-            return yield call(post, '/admin/Comments/addComments', data);
+            return yield call(post, '/admin/Timeline/addTimeline', data);
         }
 
     } catch (err) {
@@ -102,14 +102,11 @@ export function* saveComments(data) {
     }
 }
 
-export function* saveCommentsFlow() {
+export function* saveTimelineFlow() {
     while (true) {
-        let req= yield take(CommentTypes.SAVE_COMMENT);
-        if (req.data.comment === '') {
-            yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '请输入留言', msgType: 0});
-        }
-        if (req.data.comment) {
-            let res = yield call(saveComments, req.data);
+        let req= yield take(TimelineTypes.SAVE_TIMELINE);
+        if (req.data) {
+            let res = yield call(saveTimeline, req.data);
             if (res) {
                 if (res.code === 0) {
                     yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 1});

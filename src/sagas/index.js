@@ -1,13 +1,13 @@
 import {fork} from 'redux-saga/effects'
 import {loginFlow, registerFlow, user_auth, logout} from './homeSaga'
-import {get_all_users_flow} from './adminManagerUsersSaga'
-import {getAllTagsFlow, addTagFlow, delTagFlow} from './adminManagerTagsSaga'
+import {get_all_users_flow} from './usersSaga'
+import {getAllTagsFlow, addTagFlow, delTagFlow} from './tagsSaga'
 
-import {getArticleListFlow,getArticleDetailShowFlow,deleteArticleFlow,saveArticleFlow} from './adminManagerArticleSaga'
-import {getTimelineListFlow,getTimelineDetailFlow,saveTimelineFlow,deleteTimelineFlow} from './adminManagerTimelineSaga'
-import {getFriendlinkListFlow,getFriendlinkDetailFlow,saveFriendlinkFlow,deleteFriendlinkFlow} from './adminManagerFriendlinkSaga'
-import {getCommentsListFlow,getCommentsDetailFlow,saveCommentsFlow,deleteCommentsFlow} from './adminManagerCommentsSaga'
-import {getArticlesListFlow,getArticleDetailFlow,getCommentListFlow,addCommentFlow,getTimeLineListFlow,getFriendLinkListFlow,getColumnListFlow} from './frontSaga'
+import {getArticleListFlow,getArticleDetailShowFlow,deleteArticleFlow,saveArticleFlow} from './articleSaga'
+import {getTimelineListFlow,getTimelineDetailFlow,saveTimelineFlow,deleteTimelineFlow} from './timelineSaga'
+import {getFriendlinkListFlow,getFriendlinkDetailFlow,saveFriendlinkFlow,deleteFriendlinkFlow} from './friendlinkSaga'
+import {getCommentsListFlow,getCommentsDetailFlow,saveCommentsFlow,deleteCommentsFlow} from './commentsSaga'
+import {getArticlesListFlow,getArticleDetailFlow,getCommentListFlow,addCommentFlow,getTimeLineListFlow,getFriendLinkListFlow,getColumnListFlow,getWebsiteInfoFlow} from './frontSaga'
 
 export default function* rootSaga() {
     yield  fork(loginFlow);
@@ -29,6 +29,7 @@ export default function* rootSaga() {
     yield fork(getTimeLineListFlow);
     yield fork(getFriendLinkListFlow);
     yield fork(getColumnListFlow);
+    yield fork(getWebsiteInfoFlow);
 
     yield fork(getTimelineListFlow);
     yield fork(getTimelineDetailFlow);
@@ -44,6 +45,7 @@ export default function* rootSaga() {
     yield fork(getCommentsDetailFlow);
     yield fork(saveCommentsFlow);
     yield fork(deleteCommentsFlow);
+
 
 
 

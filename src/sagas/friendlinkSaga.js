@@ -1,7 +1,7 @@
 import {take,call,put,select} from 'redux-saga/effects'
 import {get, post} from '../fetch/fetch'
 import {actionsTypes as IndexActionTypes} from '../reducers'
-import {actionTypes as FriendlinkTypes} from '../reducers/adminManagerFriendlink'
+import {actionTypes as FriendlinkTypes} from '../reducers/friendlinkReducer'
 
 export function* getFriendlinkList () {
     yield put({type: IndexActionTypes.FETCH_START});

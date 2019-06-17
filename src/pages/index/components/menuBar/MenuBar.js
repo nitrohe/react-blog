@@ -16,7 +16,8 @@ export default class MenuBar extends Component{
     }
 
     handleClick = (e, align="horizontal") => {
-        if(e == this.state.current) {
+        let curUrl = window.location.href;
+        if(e == this.state.current && curUrl.indexOf("detail")==-1) {
             return ;
         }
 

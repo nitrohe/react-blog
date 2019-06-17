@@ -9,7 +9,7 @@ import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Butto
 import moment from 'moment';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
 
-import {actions} from '@reducers/adminManagerFriendlink'
+import {actions} from '@reducers/friendlinkReducer'
 const {get_friendlink_detail, set_friendlink_detail, save_friendlink} = actions;
 
 const { TextArea } = Input;

@@ -1,7 +1,7 @@
 import React,{Component,PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {actions} from '@reducers/adminManagerTags'
+import {actions} from '@reducers/tagsReducer'
 import style from './style.css'
 import {Tag, Input, Tooltip, Button} from 'antd'
 
