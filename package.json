@@ -71,7 +71,7 @@
     "remark": "^8.0.0",
     "remark-react": "^4.0.1",
     "remark-react-lowlight": "^0.7.0",
-    "serialize-javascript": "^1.4.0",
+    "serialize-javascript": "^3.1.0",
     "serve-favicon": "^2.4.4",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-bundle-size-analyzer": "^2.7.0"
